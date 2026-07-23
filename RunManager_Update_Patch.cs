@@ -22,6 +22,11 @@ internal static class RunManager_Update_Patch
             return;
         }
 
+        if (classUI == null)
+        {
+            CreateUI();
+        }
+
         if (Input.GetKeyDown(KeyCode.F5))
         {
             Plugin.Log.LogInfo("F5 détectée !");
@@ -43,15 +48,6 @@ internal static class RunManager_Update_Patch
             NextClass();
             UpdateUI();
         }
-
-        if (Input.GetKeyDown(KeyCode.F9))
-        {
-            CreateUI();
-            // Transform energy = HUDCanvas.instance.transform.Find("HUD/Game Hud/Energy");/
-            // DumpComponents(energy.gameObject);
-            // DumpHierarchy(HUDCanvas.instance.transform);
-        }
-
     }
 
     private static void CreateUI()
@@ -79,35 +75,17 @@ internal static class RunManager_Update_Patch
                 return "Aucune classe";
 
             case PlayerClass.Druid:
-                return "🌿 Druide";
+                return "Druide";
 
             case PlayerClass.Warrior:
-                return "⚔ Guerrier";
+                return "Guerrier";
 
             case PlayerClass.Assassin:
-                return "🗡 Assassin";
+                return "Assassin";
 
             default:
                 return Plugin.SelectedClass.ToString();
         }
-    }
-
-    private static void DumpComponents(GameObject obj)
-    {
-        Plugin.Log.LogInfo($"=== {obj.name} ===");
-
-        foreach (Component c in obj.GetComponents<Component>())
-        {
-            Plugin.Log.LogInfo($"- {c.GetType().Name}");
-        }
-    }
-
-    private static void DumpHierarchy(Transform t, int depth = 0)
-    {
-        Plugin.Log.LogInfo(new string(' ', depth * 2) + t.name);
-
-        foreach (Transform child in t)
-            DumpHierarchy(child, depth + 1);
     }
 
     private static void PreviousClass()
