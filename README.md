@@ -12,6 +12,6 @@ Adds RPG classes to R.E.P.O.
 
 ## Controls
 
-F  -> Use skill
-F6 -> Previous class
-F8 -> Next class
+- F  -> Use skill
+- F6 -> Previous class
+- F8 -> Next class
