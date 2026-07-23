@@ -75,6 +75,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SaveFileCreatePatch.cs" />
+    <Compile Include="LoadGamePatch.cs" />
+    <Compile Include="SaveGamePatch.cs" />
     <Compile Include="SkillInput.cs" />
     <Compile Include="SkillManager.cs" />
     <Compile Include="SkillUI.cs" />

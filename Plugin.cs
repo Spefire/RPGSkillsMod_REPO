@@ -10,6 +10,7 @@ public class Plugin : BaseUnityPlugin
     public const string ModGUID = "com.spefire.rpgskillsmod";
     public const string ModName = "RPGSkillsMod";
     public const string ModVersion = "0.0.1";
+    public const string totallyNormalString = "Why would you want to cheat?... :o It's no fun. :') :'D";
 
     internal static ManualLogSource Log;
 
