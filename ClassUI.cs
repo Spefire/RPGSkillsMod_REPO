@@ -31,6 +31,10 @@ internal static class ClassUI
         if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop())
         {
             classUI.SetActive(true);
+            leftArrow.gameObject.SetActive(true);
+            rightArrow.gameObject.SetActive(true);
+            leftKey.gameObject.SetActive(true);
+            rightKey.gameObject.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.F6))
             {
@@ -47,6 +51,10 @@ internal static class ClassUI
         else if (SemiFunc.RunIsLevel())
         {
             classUI.SetActive(true);
+            leftArrow.gameObject.SetActive(false);
+            rightArrow.gameObject.SetActive(false);
+            leftKey.gameObject.SetActive(false);
+            rightKey.gameObject.SetActive(false);
 
             if (Input.GetKeyDown(KeyCode.F5))
             {

@@ -5,10 +5,16 @@ using UnityEngine;
 [HarmonyPatch(typeof(RunManager), "Update")]
 internal static class SkillUI
 {
-    public static GameObject skillUI;
-    private static TextMeshProUGUI title;
-    private static TextMeshProUGUI description;
-    private static TextMeshProUGUI properties;
+    private static GameObject skillUI;
+    private static GameObject lobbyShopRoot;
+    private static GameObject levelRoot;
+
+    private static TextMeshProUGUI lobbyTitle;
+    private static TextMeshProUGUI lobbyDescription;
+    private static TextMeshProUGUI lobbyProperties;
+
+    private static TextMeshProUGUI levelTitle;
+    private static TextMeshProUGUI levelCooldown;
 
     private static PlayerClass currentClass = PlayerClass.None;
 
@@ -23,9 +29,17 @@ internal static class SkillUI
         if (skillUI == null)
             CreateUI();
 
+        if (Plugin.SelectedClass == PlayerClass.None)
+        {
+            skillUI.SetActive(false);
+            return;
+        }
+
         if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop())
         {
             skillUI.SetActive(true);
+            lobbyShopRoot.SetActive(true);
+            levelRoot.SetActive(false);
 
             if (currentClass != Plugin.SelectedClass)
             {
@@ -36,11 +50,15 @@ internal static class SkillUI
         else if (SemiFunc.RunIsLevel())
         {
             skillUI.SetActive(true);
+            lobbyShopRoot.SetActive(false);
+            levelRoot.SetActive(true);
             RefreshLevel();
         }
         else
         {
             skillUI.SetActive(false);
+            lobbyShopRoot.SetActive(false);
+            levelRoot.SetActive(false);
         }
     }
 
@@ -60,20 +78,42 @@ internal static class SkillUI
         DestroyChild("Zap");
         DestroyChild("Scanlines");
 
-        // Configure le texte principal
-        title = skillUI.GetComponent<TextMeshProUGUI>();
-        title.fontSize = 32;
-        title.alignment = TextAlignmentOptions.TopLeft;
+        lobbyShopRoot = new GameObject("LobbyShop");
+        lobbyShopRoot.transform.SetParent(skillUI.transform, false);
 
-        description = CreateText(
+        levelRoot = new GameObject("Level");
+        levelRoot.transform.SetParent(skillUI.transform, false);
+
+        // Configure le texte principal
+        lobbyTitle = CreateText(
+            lobbyShopRoot.transform,
+            "Title",
+            Vector2.zero,
+            32);
+
+        lobbyDescription = CreateText(
+            lobbyShopRoot.transform,
             "Description",
             new Vector2(0, -35),
             18);
 
-        properties = CreateText(
+        lobbyProperties = CreateText(
+            lobbyShopRoot.transform,
             "Properties",
-            new Vector2(0, -60),
+            new Vector2(0, -70),
             18);
+
+        levelTitle = CreateText(
+            levelRoot.transform,
+            "Title",
+            Vector2.zero,
+            32);
+
+        levelCooldown = CreateText(
+            levelRoot.transform,
+            "Cooldown",
+            new Vector2(0, -40),
+            24);
 
         RectTransform rect = skillUI.GetComponent<RectTransform>();
         rect.anchorMin = new Vector2(0, 0);
@@ -88,29 +128,31 @@ internal static class SkillUI
     private static void RefreshLobbyShop()
     {
         Skill skill = SkillDatabase.Get(Plugin.SelectedClass);
-        title.text = skill.Name;
-        description.text = skill.Description;
-        properties.text = string.Join("\n", skill.Properties.ConvertAll(p => $"• {p}"));
+        lobbyTitle.text = skill.Name;
+        lobbyDescription.text = skill.Description;
+        lobbyProperties.text = string.Join("\n", skill.Properties.ConvertAll(p => $"• {p}"));
+        lobbyProperties.color = Color.green;
     }
 
     private static void RefreshLevel()
     {
         Skill skill = SkillDatabase.Get(Plugin.SelectedClass);
-        title.text = skill.Name;
-        description.text = "";
+        levelTitle.text = skill.Name;
+
         if (SkillManager.IsReady)
         {
-            properties.color = Color.green;
-            properties.text = "READY";
+            levelCooldown.color = Color.green;
+            levelCooldown.text = "READY !";
         }
         else
         {
-            properties.color = Color.white;
-            properties.text = $"{SkillManager.RemainingCooldown:0}s";
+            levelCooldown.color = Color.white;
+            levelCooldown.text = $"{SkillManager.RemainingCooldown:0}s remaining...";
         }
     }
 
     private static TextMeshProUGUI CreateText(
+        Transform parent,
         string name,
         Vector2 position,
         float size)
@@ -129,8 +171,8 @@ internal static class SkillUI
         TextMeshProUGUI tmp = go.AddComponent<TextMeshProUGUI>();
 
         // On récupère les mêmes réglages que le texte principal
-        tmp.font = title.font;
-        tmp.fontSharedMaterial = title.fontSharedMaterial;
+        tmp.font = lobbyTitle.font;
+        tmp.fontSharedMaterial = lobbyTitle.fontSharedMaterial;
 
         tmp.fontSize = size;
         tmp.color = Color.white;
