@@ -1,11 +1,11 @@
 ﻿public enum PlayerClass
 {
     None,
-    Necromancer,
-    Druid,
     Assassin,
-    Scout,
-    Warrior,
     Alchemist,
-    Guardian
+    Druid,
+    Guardian,
+    Necromancer,
+    Scout,
+    Warrior
 }
