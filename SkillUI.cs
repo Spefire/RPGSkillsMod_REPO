@@ -12,8 +12,6 @@ internal static class SkillUI
     private static TextMeshProUGUI lobbyProperties;
     private static TextMeshProUGUI levelCooldown;
 
-    private static PlayerClass currentClass = PlayerClass.None;
-
     private static void Postfix()
     {
         if (LevelGenerator.Instance == null)

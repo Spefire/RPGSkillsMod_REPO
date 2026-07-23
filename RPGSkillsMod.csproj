@@ -7,8 +7,8 @@
     <ProjectGuid>{25DF85B1-0101-469C-B93B-AA6ED3E7DBB0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RepoNiniTotosMod</RootNamespace>
-    <AssemblyName>RepoNiniTotosMod</AssemblyName>
+    <RootNamespace>RPGSkillsMod</RootNamespace>
+    <AssemblyName>RPGSkillsMod</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
