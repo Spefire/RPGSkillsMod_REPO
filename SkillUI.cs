@@ -98,7 +98,16 @@ internal static class SkillUI
         Skill skill = SkillDatabase.Get(Plugin.SelectedClass);
         title.text = skill.Name;
         description.text = "";
-        properties.text = "";
+        if (SkillManager.IsReady)
+        {
+            properties.color = Color.green;
+            properties.text = "READY";
+        }
+        else
+        {
+            properties.color = Color.white;
+            properties.text = $"{SkillManager.RemainingCooldown:0}s";
+        }
     }
 
     private static TextMeshProUGUI CreateText(
