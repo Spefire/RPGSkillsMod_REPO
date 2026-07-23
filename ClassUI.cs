@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
 
 [HarmonyPatch(typeof(RunManager), "Update")]
-internal static class RunManager_Update_Patch
+internal static class ClassUI
 {
     public static GameObject classUI;
     private static TextMeshProUGUI classText;
@@ -19,40 +19,44 @@ internal static class RunManager_Update_Patch
     private static void Postfix()
     {
         if (LevelGenerator.Instance == null)
-        {
             return;
-        }
 
         if (!LevelGenerator.Instance.Generated)
-        {
             return;
-        }
 
         if (classUI == null)
-        {
             CreateUI();
-        }
 
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            Plugin.Log.LogInfo("F5 touched !");
-            HealPlayer();
-        }
 
-        if (Input.GetKeyDown(KeyCode.F6))
+        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop())
         {
-            if (!SemiFunc.RunIsLobby() && !SemiFunc.RunIsShop())
-                return;
-            PreviousClass();
-            UpdateUI();
-        }
+            classUI.SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.F8))
+            if (Input.GetKeyDown(KeyCode.F6))
+            {
+                PreviousClass();
+                Refresh();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F8))
+            {
+                NextClass();
+                Refresh();
+            }
+        }
+        else if (SemiFunc.RunIsLevel())
         {
-            if (!SemiFunc.RunIsLobby() && !SemiFunc.RunIsShop())
-                return;
-            NextClass();
-            UpdateUI();
+            classUI.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                Plugin.Log.LogInfo("F5 touched !");
+                HealPlayer();
+            }
+        }
+        else
+        {
+            classUI.SetActive(false);
         }
     }
 
@@ -88,15 +92,8 @@ internal static class RunManager_Update_Patch
 
         leftKey = CreateChildText("LeftKey", "F6", new Vector2(-120, -50), 18, Color.white);
         rightKey = CreateChildText("RightKey", "F8", new Vector2(-90, -50), 18, Color.white);
-        UpdateUI();
-    }
 
-    private static void DestroyIfExists(Transform parent, string name)
-    {
-        Transform t = parent.Find(name);
-
-        if (t != null)
-            UnityEngine.Object.Destroy(t.gameObject);
+        Refresh();
     }
 
     private static TextMeshProUGUI CreateChildText(
@@ -127,7 +124,7 @@ internal static class RunManager_Update_Patch
         return tmp;
     }
 
-    private static void UpdateUI()
+    private static void Refresh()
     {
         if (classText == null)
             return;
@@ -141,8 +138,6 @@ internal static class RunManager_Update_Patch
 
         Plugin.SelectedClass =
             (PlayerClass)(((int)Plugin.SelectedClass - 1 + count) % count);
-
-        Plugin.Log.LogInfo($"Class selected : {Plugin.SelectedClass}");
     }
 
     private static void NextClass()
@@ -151,8 +146,6 @@ internal static class RunManager_Update_Patch
 
         Plugin.SelectedClass =
             (PlayerClass)(((int)Plugin.SelectedClass + 1) % count);
-
-        Plugin.Log.LogInfo($"Class selected : {Plugin.SelectedClass}");
     }
 
     private static void HealPlayer()
@@ -175,5 +168,13 @@ internal static class RunManager_Update_Patch
         {
             Plugin.Log.LogError($"Heal failed : {ex}");
         }
+    }
+
+    private static void DestroyIfExists(Transform parent, string name)
+    {
+        Transform t = parent.Find(name);
+
+        if (t != null)
+            UnityEngine.Object.Destroy(t.gameObject);
     }
 }
