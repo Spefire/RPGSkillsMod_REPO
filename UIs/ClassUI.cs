@@ -18,6 +18,9 @@ internal static class ClassUI
 
     private static void Postfix()
     {
+        if (!Plugin.EnableMod.Value)
+            return;
+
         if (LevelGenerator.Instance == null)
             return;
 
@@ -27,7 +30,6 @@ internal static class ClassUI
         if (classUI == null)
             CreateUI();
 
-
         if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop())
         {
             classUI.SetActive(true);
@@ -36,13 +38,13 @@ internal static class ClassUI
             leftKey.gameObject.SetActive(true);
             rightKey.gameObject.SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.F6))
+            if (Input.GetKeyDown(Plugin.PreviousClassKey.Value))
             {
                 PreviousClass();
                 Refresh();
             }
 
-            if (Input.GetKeyDown(KeyCode.F8))
+            if (Input.GetKeyDown(Plugin.NextClassKey.Value))
             {
                 NextClass();
                 Refresh();
@@ -55,12 +57,6 @@ internal static class ClassUI
             rightArrow.gameObject.SetActive(false);
             leftKey.gameObject.SetActive(false);
             rightKey.gameObject.SetActive(false);
-
-            if (Input.GetKeyDown(KeyCode.F5))
-            {
-                Plugin.Log.LogInfo("F5 touched !");
-                HealPlayer();
-            }
         }
         else
         {
@@ -95,16 +91,16 @@ internal static class ClassUI
         rect.anchoredPosition = new Vector2(0, -62);
 
         // Ajoute les nouveaux éléments
-        leftArrow = CreateChildText("LeftArrow", "◀", new Vector2(-120, -25), 24, Color.yellow);
-        rightArrow = CreateChildText("RightArrow", "▶", new Vector2(-90, -25), 24, Color.yellow);
+        leftArrow = CreateText("LeftArrow", "◀", new Vector2(-120, -25), 24, Color.yellow);
+        rightArrow = CreateText("RightArrow", "▶", new Vector2(-90, -25), 24, Color.yellow);
 
-        leftKey = CreateChildText("LeftKey", "F6", new Vector2(-120, -50), 18, Color.white);
-        rightKey = CreateChildText("RightKey", "F8", new Vector2(-90, -50), 18, Color.white);
+        leftKey = CreateText("LeftKey", Plugin.PreviousClassKey.Value.ToString(), new Vector2(-120, -50), 18, Color.grey);
+        rightKey = CreateText("RightKey", Plugin.NextClassKey.Value.ToString(), new Vector2(-90, -50), 18, Color.grey);
 
         Refresh();
     }
 
-    private static TextMeshProUGUI CreateChildText(
+    private static TextMeshProUGUI CreateText(
         string name,
         string text,
         Vector2 position,
@@ -154,28 +150,6 @@ internal static class ClassUI
 
         Plugin.SelectedClass =
             (PlayerClass)(((int)Plugin.SelectedClass + 1) % count);
-    }
-
-    private static void HealPlayer()
-    {
-        try
-        {
-            PlayerAvatar avatar = PlayerAvatar.instance;
-
-            if (avatar == null || avatar.playerHealth == null)
-            {
-                Plugin.Log.LogWarning("Heal impossible : player not found.");
-                return;
-            }
-
-            avatar.playerHealth.Heal(9999);
-
-            Plugin.Log.LogInfo("Player healed !");
-        }
-        catch (Exception ex)
-        {
-            Plugin.Log.LogError($"Heal failed : {ex}");
-        }
     }
 
     private static void DestroyIfExists(Transform parent, string name)

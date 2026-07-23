@@ -11,9 +11,13 @@ internal static class SkillUI
     private static TextMeshProUGUI lobbyDescription;
     private static TextMeshProUGUI lobbyProperties;
     private static TextMeshProUGUI levelCooldown;
+    private static TextMeshProUGUI levelKey;
 
     private static void Postfix()
     {
+        if (!Plugin.EnableMod.Value)
+            return;
+
         if (LevelGenerator.Instance == null)
             return;
 
@@ -35,6 +39,7 @@ internal static class SkillUI
             lobbyDescription.gameObject.SetActive(true);
             lobbyProperties.gameObject.SetActive(true);
             levelCooldown.gameObject.SetActive(false);
+            levelKey.gameObject.SetActive(false);
             RefreshLobbyShop();
         }
         else if (SemiFunc.RunIsLevel())
@@ -80,23 +85,11 @@ internal static class SkillUI
         rect.sizeDelta = new Vector2(260, 160);
 
         // Ajoute les nouveaux éléments
-        lobbyDescription = CreateText(
-            skillUI.transform,
-            "Description",
-            new Vector2(0, -85),
-            18);
+        lobbyDescription = CreateText("Description", "", new Vector2(0, -85), 18, Color.white);
+        lobbyProperties = CreateText("Properties", "", new Vector2(0, -120), 18, Color.green);
 
-        lobbyProperties = CreateText(
-            skillUI.transform,
-            "Properties",
-            new Vector2(0, -120),
-            18);
-
-        levelCooldown = CreateText(
-            skillUI.transform,
-            "Cooldown",
-            new Vector2(0, -85),
-            18);
+        levelCooldown = CreateText("Cooldown", "", new Vector2(0, -85), 18, Color.white);
+        levelKey = CreateText("Key", Plugin.SkillKey.Value.ToString() + " to use", new Vector2(0, -105), 18, Color.grey);
 
         RefreshLevel();
     }
@@ -107,7 +100,6 @@ internal static class SkillUI
         skillText.text = skill.Name;
         lobbyDescription.text = skill.Description;
         lobbyProperties.text = string.Join("\n", skill.Properties.ConvertAll(p => $"• {p}"));
-        lobbyProperties.color = Color.green;
     }
 
     private static void RefreshLevel()
@@ -117,21 +109,24 @@ internal static class SkillUI
 
         if (SkillManager.IsReady)
         {
+            levelKey.gameObject.SetActive(true);
             levelCooldown.color = Color.green;
-            levelCooldown.text = "READY !";
+            levelCooldown.text = "READY";
         }
         else
         {
+            levelKey.gameObject.SetActive(false);
             levelCooldown.color = Color.white;
             levelCooldown.text = $"{SkillManager.RemainingCooldown:0}s remaining...";
         }
     }
 
     private static TextMeshProUGUI CreateText(
-        Transform parent,
         string name,
+        string text,
         Vector2 position,
-        float size)
+        float size,
+        Color color)
     {
         GameObject go = new GameObject(name);
 
@@ -151,7 +146,8 @@ internal static class SkillUI
         tmp.fontSharedMaterial = skillText.fontSharedMaterial;
 
         tmp.fontSize = size;
-        tmp.color = Color.white;
+        tmp.color = color;
+        tmp.text = text;
         tmp.alignment = TextAlignmentOptions.TopLeft;
 
         return tmp;

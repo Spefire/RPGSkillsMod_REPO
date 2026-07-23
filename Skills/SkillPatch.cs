@@ -2,10 +2,13 @@
 using UnityEngine;
 
 [HarmonyPatch(typeof(RunManager), "Update")]
-internal static class SkillInput
+internal static class SkillPatch
 {
     private static void Postfix()
     {
+        if (!Plugin.EnableMod.Value)
+            return;
+
         if (LevelGenerator.Instance == null)
             return;
 
@@ -15,7 +18,7 @@ internal static class SkillInput
         if (SemiFunc.RunIsLevel())
         {
             SkillManager.Update();
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(Plugin.SkillKey.Value))
             {
                 SkillManager.TryUseSkill();
             }
