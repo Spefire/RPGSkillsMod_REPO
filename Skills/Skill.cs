@@ -2,17 +2,21 @@
 
 public class Skill
 {
-    public string Name { get; }
-    public string Description { get; }
-    public List<string> Properties { get; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public List<string> Properties { get; set; }
 
-    public float Cooldown { get; }
+    public float Cooldown { get; set; }
 
-    public Skill(string name, string description, List<string> properties, float cooldown)
+    public Skill()
     {
-        Name = name;
-        Description = description;
-        Properties = properties;
-        Cooldown = cooldown;
+        Name = "No skill";
+        Description = "";
+        Properties = new List<string>();
+        Cooldown = 0f;
     }
+
+    public virtual void Execute() { }
+
+    public virtual void Update() { }
 }

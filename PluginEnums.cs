@@ -2,10 +2,12 @@
 {
     None,
     Assassin,
-    Alchemist,
+    Blacksmith,
     Druid,
     Guardian,
     Necromancer,
+    Paladin,
     Scout,
+    TreasureHunter,
     Warrior
 }
