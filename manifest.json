@@ -1,7 +1,7 @@
 {
   "name": "RPGSkillsMod",
-  "version_number": "0.1.0",
-  "website_url": "",
+  "version_number": "0.2.0",
+  "website_url": "https://github.com/Spefire/RPGSkillsMod_REPO",
   "description": "Adds RPG classes and unique skills to R.E.P.O.",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2100"

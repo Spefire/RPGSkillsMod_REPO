@@ -6,6 +6,27 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ---
 
+## [0.2.0] - Config and UI improvements
+
+### Added
+
+* Added a configuration file using BepInEx.
+* Added configurable keybinds
+* Added an option to enable or disable the mod.
+* Added support for future configuration options.
+
+### Changed
+
+* Reworked the skill UI.
+* The skill activation key is now displayed when the skill is ready.
+
+### Fixed
+
+* Fixed several UI initialization issues.
+* Improved UI stability and cleanup.
+
+---
+
 ## [0.1.0] - Initial Preview
 
 ### Added
