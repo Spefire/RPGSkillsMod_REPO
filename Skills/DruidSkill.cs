@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 internal class DruidSkill : Skill
 {
@@ -24,28 +25,22 @@ internal class DruidSkill : Skill
 
     private void HealNearbyPlayers()
     {
-        // TODO:
-        // Retrieve every player in the game.
-        //
-        // Example:
-        // foreach (PlayerAvatar player in PlayerManager.instance.Players)
+        PlayerAvatar caster = PlayerAvatar.instance;
 
-        /*
-        foreach (...)
+        List<PlayerAvatar> players = SemiFunc.PlayerGetAll();
+        foreach (PlayerAvatar player in players)
         {
-            float distance = Vector3.Distance(
-                player.transform.position,
-                PlayerAvatar.instance.transform.position);
-
+            float distance = Vector3.Distance(player.transform.position, caster.transform.position);
             if (distance > Radius)
                 continue;
 
-            // TODO:
-            // Heal the player.
-            //
-            // Example:
-            // player.Heal(20);
+            // Heal() is for healing yourself, HealOther() is the networked
+            // (RPC) call used to heal someone else - "effect" (bool) likely
+            // toggles the heal VFX/SFX, so we leave it enabled (true).
+            if (player == caster)
+                player.playerHealth.Heal(Health, true);
+            else
+                player.playerHealth.HealOther(Health, true);
         }
-        */
     }
 }

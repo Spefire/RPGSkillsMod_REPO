@@ -32,12 +32,10 @@ internal class ScoutSkill : Skill
         if (!active)
             return;
 
-        // TODO:
         // SemiFunc.LocalPlayerOverrideEnergyUnlimited() takes no duration
         // parameter, so it's not clear whether a single call is enough or
-        // if it needs to be re-applied every frame like this (similar to
-        // the game's other "OverrideXTick()" patterns). Calling it every
-        // tick while active is the safe assumption for now.
+        // if it needs to be re-applied every frame like this.
+        // Calling it every tick while active is the safe assumption for now.
         SemiFunc.LocalPlayerOverrideEnergyUnlimited();
 
         timer -= Time.deltaTime;

@@ -5,7 +5,10 @@ internal class WarriorSkill : Skill
     private bool active;
     private float timer;
 
-    private const int Strength = 20;
+    private float originalGrabStrength;
+    private float originalThrowStrength;
+
+    private const float StrengthMultiplier = 1.5f;
     private const float Duration = 5f;
 
     public WarriorSkill()
@@ -14,7 +17,7 @@ internal class WarriorSkill : Skill
         Description = "Temporarily increases your strength.";
         Cooldown = 60f;
 
-        Properties.Add($"Strength: {Strength}");
+        Properties.Add($"Strength multiplier: x{StrengthMultiplier}");
         Properties.Add($"Duration: {Duration}s");
     }
 
@@ -24,13 +27,16 @@ internal class WarriorSkill : Skill
             return;
 
         active = true;
-        timer = 15f;
+        timer = Duration;
 
-        // TODO:
-        // Increase the player's strength.
-        //
-        // Example:
-        // PlayerController.instance.StrengthMultiplier *= 1.5f;
+        // grabStrength / throwStrength are the public fields that control
+        // how strong the player's PhysGrabber is when grabbing/throwing items.
+        PhysGrabber physGrabber = PlayerAvatar.instance.physGrabber;
+        originalGrabStrength = physGrabber.grabStrength;
+        originalThrowStrength = physGrabber.throwStrength;
+
+        physGrabber.grabStrength = originalGrabStrength * StrengthMultiplier;
+        physGrabber.throwStrength = originalThrowStrength * StrengthMultiplier;
 
         Plugin.Log.LogInfo("Warrior skill activated.");
     }
@@ -46,8 +52,9 @@ internal class WarriorSkill : Skill
         {
             active = false;
 
-            // TODO:
-            // Restore the player's original strength.
+            PhysGrabber physGrabber = PlayerAvatar.instance.physGrabber;
+            physGrabber.grabStrength = originalGrabStrength;
+            physGrabber.throwStrength = originalThrowStrength;
 
             Plugin.Log.LogInfo("Warrior skill ended.");
         }

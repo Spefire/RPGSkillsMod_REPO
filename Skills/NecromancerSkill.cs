@@ -35,12 +35,12 @@ internal class NecromancerSkill : Skill
         // reach internal/private game fields).
         int casterHealth = Traverse.Create(caster.playerHealth).Field("health").GetValue<int>();
 
-        // Don't let the caster kill themselves with the sacrifice.
-        if (casterHealth <= HealthSacrifice)
+        // Let the caster kill themselves with the sacrifice.
+        /*if (casterHealth <= HealthSacrifice)
         {
             Plugin.Log.LogInfo("Not enough health to sacrifice.");
             return;
-        }
+        }*/
 
         List<PlayerAvatar> players = SemiFunc.PlayerGetAll();
 
