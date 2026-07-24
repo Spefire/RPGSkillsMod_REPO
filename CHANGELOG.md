@@ -6,6 +6,22 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ---
 
+## [0.3.0] - Active skills release
+
+### Added
+
+* Implemented active skills for every class (previously just a framework with no effect).
+* Added the **Paladin** class (*Divine Shield*: temporary invulnerability to all damage).
+* Added the **Treasure Hunter** class (*Treasure Sense*: reveals nearby valuables).
+* Added the **Blacksmith** class, replacing Alchemist (*Reinforce*: makes the held item unbreakable).
+* Skill activation is now announced in the in-game chat.
+
+### Fixed
+
+* Fixed skills' `Execute`/`Update` logic not running for some classes (e.g. Warrior).
+
+---
+
 ## [0.2.0] - Config and UI improvements
 
 ### Added

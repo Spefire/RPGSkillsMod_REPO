@@ -5,11 +5,8 @@ internal class WarriorSkill : Skill
     private bool active;
     private float timer;
 
-    private float originalGrabStrength;
-    private float originalThrowStrength;
-
-    private const float StrengthMultiplier = 1.5f;
-    private const float Duration = 5f;
+    private const int StrengthLevels = 6;
+    private const float Duration = 15f;
 
     public WarriorSkill()
     {
@@ -17,7 +14,7 @@ internal class WarriorSkill : Skill
         Description = "Temporarily increases your strength.";
         Cooldown = 60f;
 
-        Properties.Add($"Strength multiplier: x{StrengthMultiplier}");
+        Properties.Add($"Strength levels: +{StrengthLevels}");
         Properties.Add($"Duration: {Duration}s");
     }
 
@@ -29,14 +26,10 @@ internal class WarriorSkill : Skill
         active = true;
         timer = Duration;
 
-        // grabStrength / throwStrength are the public fields that control
-        // how strong the player's PhysGrabber is when grabbing/throwing items.
-        PhysGrabber physGrabber = PlayerAvatar.instance.physGrabber;
-        originalGrabStrength = physGrabber.grabStrength;
-        originalThrowStrength = physGrabber.throwStrength;
+        string steamID = SemiFunc.PlayerGetSteamID(PlayerAvatar.instance);
 
-        physGrabber.grabStrength = originalGrabStrength * StrengthMultiplier;
-        physGrabber.throwStrength = originalThrowStrength * StrengthMultiplier;
+        PunManager.instance.UpgradePlayerGrabStrength(steamID, StrengthLevels);
+        PunManager.instance.UpgradePlayerThrowStrength(steamID, StrengthLevels);
 
         Plugin.Log.LogInfo("Warrior skill activated.");
     }
@@ -52,9 +45,10 @@ internal class WarriorSkill : Skill
         {
             active = false;
 
-            PhysGrabber physGrabber = PlayerAvatar.instance.physGrabber;
-            physGrabber.grabStrength = originalGrabStrength;
-            physGrabber.throwStrength = originalThrowStrength;
+            string steamID = SemiFunc.PlayerGetSteamID(PlayerAvatar.instance);
+
+            PunManager.instance.UpgradePlayerGrabStrength(steamID, -StrengthLevels);
+            PunManager.instance.UpgradePlayerThrowStrength(steamID, -StrengthLevels);
 
             Plugin.Log.LogInfo("Warrior skill ended.");
         }

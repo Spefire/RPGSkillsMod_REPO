@@ -17,6 +17,8 @@ internal static class SkillManager
             if (remainingCooldown < 0f)
                 remainingCooldown = 0f;
         }
+
+        SkillDatabase.Get(Plugin.SelectedClass).Update();
     }
 
     public static bool TryUseSkill()
@@ -28,6 +30,8 @@ internal static class SkillManager
 
         Plugin.Log.LogInfo($"Using skill : {skill.Name}");
         AnnounceSkillInChat(skill);
+
+        skill.Execute();
 
         remainingCooldown = skill.Cooldown;
 
