@@ -27,10 +27,17 @@ internal static class SkillManager
         Skill skill = SkillDatabase.Get(Plugin.SelectedClass);
 
         Plugin.Log.LogInfo($"Using skill : {skill.Name}");
+        AnnounceSkillInChat(skill);
 
         remainingCooldown = skill.Cooldown;
 
         return true;
+    }
+
+    private static void AnnounceSkillInChat(Skill skill)
+    {
+        if (ChatManager.instance != null)
+            ChatManager.instance.ForceSendMessage($"*{skill.Name}*");
     }
 
     public static void ResetCooldown()
