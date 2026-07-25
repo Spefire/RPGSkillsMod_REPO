@@ -25,7 +25,7 @@ Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 | Druid | Nature's Blessing | Heals nearby allies within a small radius. | ✅ OK |
 | Necromancer | Raise Dead | Sacrifices your own health to revive a fallen ally nearby. | 🧪 Testing |
 | Assassin | Shadow Step | Become invisible and undetectable by enemies for a short time. | ❌ Broken |
-| Scout | Second Wind | Grants infinite stamina for a short duration. | 🧪 Testing  |
+| Scout | Best Runner | Grants infinite stamina for a short duration. | ✅ OK  |
 | Paladin | Divine Taunt | Grants temporary invulnerability to all damage, but forces nearby enemies to focus you. | ✅ OK |
 | Blacksmith | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
 | Treasure Hunter | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |

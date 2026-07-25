@@ -9,7 +9,7 @@ internal class ScoutSkill : Skill
 
     public ScoutSkill()
     {
-        Name = "Second Wind";
+        Name = "Best Runner";
         Description = "Grants infinite stamina for a short duration.";
         Cooldown = Plugin.DebugAllow ? 20f : 60f;
 
@@ -32,11 +32,7 @@ internal class ScoutSkill : Skill
         if (!active)
             return;
 
-        // SemiFunc.LocalPlayerOverrideEnergyUnlimited() takes no duration
-        // parameter, so it's not clear whether a single call is enough or
-        // if it needs to be re-applied every frame like this.
-        // Calling it every tick while active is the safe assumption for now.
-        SemiFunc.LocalPlayerOverrideEnergyUnlimited();
+        PlayerController.instance.EnergyCurrent = PlayerController.instance.EnergyStart;
 
         timer -= Time.deltaTime;
 
