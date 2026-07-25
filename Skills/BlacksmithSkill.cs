@@ -7,7 +7,7 @@ internal class BlacksmithSkill : Skill
     public BlacksmithSkill()
     {
         Name = "Reinforce";
-        Description = "Makes the item you are currently holding unbreakable.";
+        Description = "Makes the item you're currently holding unbreakable for as long as you keep holding it.";
         Cooldown = Plugin.DebugAllow ? 20f : 90f;
     }
 

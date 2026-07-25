@@ -19,17 +19,17 @@ Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 
 ## Classes & Skills
 
-| Class | Skill | Effect |
-|---|---|---|
-| Warrior | Berserk | Temporarily increases your strength. |
-| Druid | Nature's Blessing | Heals nearby allies within a small radius. |
-| Necromancer | Raise Dead | Sacrifices your own health to revive a fallen ally nearby. |
-| Assassin | Shadow Step | Become invisible and undetectable by enemies for a short time. |
-| Scout | Second Wind | Grants infinite stamina for a short duration. |
-| Guardian | Taunt | Forces nearby enemies to focus you. |
-| Paladin | Divine Shield | Grants temporary invulnerability to all damage. |
-| Blacksmith | Reinforce | Makes the item you are currently holding unbreakable. |
-| Treasure Hunter | Treasure Sense | Reveals valuable items within a radius around you. |
+| Class | Skill | Effect | Status |
+|---|---|---|---|
+| Warrior | Berserk | Temporarily increases your strength. | ✅ OK |
+| Druid | Nature's Blessing | Heals nearby allies within a small radius. | ✅ OK |
+| Necromancer | Raise Dead | Sacrifices your own health to revive a fallen ally nearby. | 🧪 Testing |
+| Assassin | Shadow Step | Become invisible and undetectable by enemies for a short time. | ❌ Broken |
+| Scout | Second Wind | Grants infinite stamina for a short duration. | 🧪 Testing  |
+| Guardian | Taunt | Forces nearby enemies to focus you. | ❌ Broken |
+| Paladin | Divine Shield | Grants temporary invulnerability to all damage. | 🧪 Testing |
+| Blacksmith | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
+| Treasure Hunter | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |
 
 ## Controls
 
