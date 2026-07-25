@@ -2,6 +2,13 @@
 
 Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 
+![Status](https://img.shields.io/badge/Status-In%20Development-orange)
+![Testing](https://img.shields.io/badge/Testing-Active-yellow)
+
+> [!WARNING]
+> This plugin is currently under active development and testing.
+> Features, balance, and behavior may change between versions.
+
 ## Features
 
 - 9 playable classes, each with a unique active skill
@@ -31,3 +38,15 @@ Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 - F8 -> Next class
 
 These keybinds, as well as enabling/disabling the mod, can be changed in the BepInEx configuration file.
+
+## Screenshots
+
+![Class Selection HUD](assets/class-selection-preview.png)
+![Skill Cooldown HUD](assets/skill-cooldown-preview.png)
+
+## Contact, Bugs & Ideas
+
+If you find a bug, have a suggestion, or want to share feedback:
+
+- Open an issue: [GitHub Issues](https://github.com/Spefire/RPGSkillsMod_REPO/issues)
+- Contact me directly via [Gmail](spefire@gmail.com) ou [Ko-fi](https://ko-fi.com/spefire)
