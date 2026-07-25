@@ -11,7 +11,7 @@ Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 
 ## Features
 
-- 9 playable classes, each with a unique active skill
+- 8 playable classes, each with a unique active skill (plus a "None" option)
 - Cooldown system with an in-game HUD showing readiness / remaining time
 - Class selection in the shop and lobby, with an in-level HUD
 - Configurable keybinds and an on/off toggle (BepInEx config)
@@ -48,4 +48,4 @@ These keybinds, as well as enabling/disabling the mod, can be changed in the Bep
 If you find a bug, have a suggestion, or want to share feedback:
 
 - Open an issue: [GitHub Issues](https://github.com/Spefire/RPGSkillsMod_REPO/issues)
-- Contact me directly via [Gmail](spefire@gmail.com) ou [Ko-fi](https://ko-fi.com/spefire)
+- Contact me directly via [Gmail](mailto:spefire@gmail.com) or [Ko-fi](https://ko-fi.com/spefire)

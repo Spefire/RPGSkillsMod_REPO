@@ -6,6 +6,24 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ---
 
+## [0.4.0] - Reliability pass
+
+### Changed
+
+* Reworked the Paladin's *Divine Shield* into **Divine Taunt**: still grants temporary invulnerability, but now also forces nearby enemies to focus the caster.
+* Reworked the Warrior's *Berserk* to use the same permanent strength/throw upgrade mechanism as the in-game shop items, instead of a temporary stat override that didn't always stick.
+* Added a status column (✅ OK / 🧪 Testing / ❌ Broken) to the class/skill table in the README for testing transparency.
+
+### Fixed
+
+* Fixed the Scout's *Best Runner* hardcoding energy to 100 instead of the player's real max, which caused an incorrect HUD readout and leftover excess stamina after the skill ended.
+
+### Known Issues
+
+* Assassin's *Shadow Step* only prevents new enemy detections; it doesn't un-taunt enemies that are already chasing the caster when the skill is used.
+
+---
+
 ## [0.3.0] - Active skills release
 
 ### Added
