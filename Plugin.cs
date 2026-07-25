@@ -20,7 +20,7 @@ public class Plugin : BaseUnityPlugin
     internal static ManualLogSource Log;
 
     public static PlayerClass SelectedClass = PlayerClass.None;
-    public static bool DebugAllowClassSwitchInLevel = false;
+    public static bool DebugAllow = false;
 
     void Awake()
     {

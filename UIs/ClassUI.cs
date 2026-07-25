@@ -31,7 +31,7 @@ internal static class ClassUI
             CreateUI();
 
         if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop()
-            || (Plugin.DebugAllowClassSwitchInLevel && SemiFunc.RunIsLevel()))
+            || (Plugin.DebugAllow && SemiFunc.RunIsLevel()))
         {
             if (Input.GetKeyDown(Plugin.PreviousClassKey.Value))
             {

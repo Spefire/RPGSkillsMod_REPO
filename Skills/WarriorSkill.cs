@@ -5,14 +5,14 @@ internal class WarriorSkill : Skill
     private bool active;
     private float timer;
 
-    private const int StrengthLevels = 6;
+    private const int StrengthLevels = 10;
     private const float Duration = 15f;
 
     public WarriorSkill()
     {
         Name = "Berserk";
         Description = "Temporarily increases your strength.";
-        Cooldown = 60f;
+        Cooldown = Plugin.DebugAllow ? 20f : 90f;
 
         Properties.Add($"Strength levels: +{StrengthLevels}");
         Properties.Add($"Duration: {Duration}s");

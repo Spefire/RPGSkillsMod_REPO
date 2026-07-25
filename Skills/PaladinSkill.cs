@@ -1,12 +1,12 @@
 internal class PaladinSkill : Skill
 {
-    private const float Duration = 6f;
+    private const float Duration = 10f;
 
     public PaladinSkill()
     {
         Name = "Divine Shield";
         Description = "Grants temporary invulnerability to all damage.";
-        Cooldown = 90f;
+        Cooldown = Plugin.DebugAllow ? 20f : 60f;
 
         Properties.Add($"Duration: {Duration}s");
     }
@@ -18,6 +18,6 @@ internal class PaladinSkill : Skill
         // active/timer state or manually revert anything here.
         PlayerAvatar.instance.playerHealth.InvincibleSet(Duration);
 
-        Plugin.Log.LogInfo("Paladin skill activated.");
+        Plugin.Log.LogInfo("Paladin skill used.");
     }
 }

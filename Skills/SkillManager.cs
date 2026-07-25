@@ -41,7 +41,7 @@ internal static class SkillManager
     private static void AnnounceSkillInChat(Skill skill)
     {
         if (ChatManager.instance != null)
-            ChatManager.instance.ForceSendMessage($"*{skill.Name}*");
+            ChatManager.instance.ForceSendMessage($"{skill.Name.ToUpper()}");
     }
 
     public static void ResetCooldown()

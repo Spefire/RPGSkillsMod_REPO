@@ -8,7 +8,7 @@ internal class GuardianSkill : Skill
     {
         Name = "Taunt";
         Description = "Forces nearby enemies to focus you.";
-        Cooldown = 45f;
+        Cooldown = Plugin.DebugAllow ? 20f : 30f;
 
         Properties.Add($"Radius: {Radius}m");
     }

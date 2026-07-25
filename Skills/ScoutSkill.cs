@@ -11,7 +11,7 @@ internal class ScoutSkill : Skill
     {
         Name = "Second Wind";
         Description = "Grants infinite stamina for a short duration.";
-        Cooldown = 60f;
+        Cooldown = Plugin.DebugAllow ? 20f : 60f;
 
         Properties.Add($"Duration: {Duration}s");
     }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 internal class NecromancerSkill : Skill
 {
-    private const int HealthSacrifice = 40;
-    private const float Radius = 8f;
+    private const int HealthSacrifice = 25;
+    private const float Radius = 10f;
 
     public NecromancerSkill()
     {
         Name = "Raise Dead";
         Description = "Sacrifice your own health to revive a fallen ally nearby.";
-        Cooldown = 90f;
+        Cooldown = Plugin.DebugAllow ? 20f : 120f;
 
         Properties.Add($"Health sacrificed: {HealthSacrifice}");
         Properties.Add($"Radius: {Radius}m");
