@@ -1,14 +1,18 @@
+using UnityEngine;
+
 internal class PaladinSkill : Skill
 {
+    private const float Radius = 15f;
     private const float Duration = 10f;
 
     public PaladinSkill()
     {
-        Name = "Divine Shield";
-        Description = "Grants temporary invulnerability to all damage.";
+        Name = "Divine Taunt";
+        Description = "Grants temporary invulnerability to all damage, but forces nearby enemies to focus you.";
         Cooldown = Plugin.DebugAllow ? 20f : 60f;
 
         Properties.Add($"Duration: {Duration}s");
+        Properties.Add($"Radius: {Radius}m");
     }
 
     public override void Execute()
@@ -18,6 +22,26 @@ internal class PaladinSkill : Skill
         // active/timer state or manually revert anything here.
         PlayerAvatar.instance.playerHealth.InvincibleSet(Duration);
 
+        TauntNearbyEnemies();
+
         Plugin.Log.LogInfo("Paladin skill used.");
+    }
+
+    private void TauntNearbyEnemies()
+    {
+        PlayerAvatar caster = PlayerAvatar.instance;
+
+        foreach (Enemy enemy in Object.FindObjectsOfType<Enemy>())
+        {
+            float distance = Vector3.Distance(
+                enemy.CenterTransform.position,
+                caster.transform.position);
+
+            if (distance > Radius)
+                continue;
+
+            // Forces this enemy to chase/target the caster.
+            enemy.SetChaseTarget(caster);
+        }
     }
 }

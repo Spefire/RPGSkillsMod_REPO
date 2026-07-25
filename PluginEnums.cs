@@ -4,7 +4,6 @@
     Assassin,
     Blacksmith,
     Druid,
-    Guardian,
     Necromancer,
     Paladin,
     Scout,

@@ -21,10 +21,6 @@ public static class SkillDatabase
             new DruidSkill()
         },
         {
-            PlayerClass.Guardian,
-            new GuardianSkill()
-        },
-        {
             PlayerClass.Necromancer,
             new NecromancerSkill()
         },
