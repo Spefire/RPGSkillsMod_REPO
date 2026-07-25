@@ -32,6 +32,7 @@ internal static class SkillManager
         AnnounceSkillInChat(skill);
 
         skill.Execute();
+        SkillVfx.PlayCastEffect(PlayerAvatar.instance, Plugin.SelectedClass);
 
         remainingCooldown = skill.Cooldown;
 
