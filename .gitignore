@@ -3,4 +3,4 @@ bin/
 obj/
 Properties/AssemblyInfo.cs
 ref/
-publish/
+*.zip

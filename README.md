@@ -41,8 +41,8 @@ These keybinds, as well as enabling/disabling the mod, can be changed in the Bep
 
 ## Screenshots
 
-![Class Selection HUD](class-selection-preview.png)
-![Skill Cooldown HUD](skill-cooldown-preview.png)
+![Class Selection HUD](https://raw.githubusercontent.com/Spefire/RPGSkillsMod_REPO/refs/heads/master/assets/class-selection-preview.png)
+![Skill Cooldown HUD](https://raw.githubusercontent.com/Spefire/RPGSkillsMod_REPO/refs/heads/master/assets/skill-cooldown-preview.png)
 
 ## Contact, Bugs & Ideas
 
