@@ -30,14 +30,9 @@ internal static class ClassUI
         if (classUI == null)
             CreateUI();
 
-        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop())
+        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop()
+            || (Plugin.DebugAllowClassSwitchInLevel && SemiFunc.RunIsLevel()))
         {
-            classUI.SetActive(true);
-            leftArrow.gameObject.SetActive(true);
-            rightArrow.gameObject.SetActive(true);
-            leftKey.gameObject.SetActive(true);
-            rightKey.gameObject.SetActive(true);
-
             if (Input.GetKeyDown(Plugin.PreviousClassKey.Value))
             {
                 PreviousClass();
@@ -49,6 +44,15 @@ internal static class ClassUI
                 NextClass();
                 Refresh();
             }
+        }
+
+        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop())
+        {
+            classUI.SetActive(true);
+            leftArrow.gameObject.SetActive(true);
+            rightArrow.gameObject.SetActive(true);
+            leftKey.gameObject.SetActive(true);
+            rightKey.gameObject.SetActive(true);
         }
         else if (SemiFunc.RunIsLevel())
         {
