@@ -10,14 +10,11 @@ internal static class SkillVfx
 
     private static readonly Dictionary<PlayerClass, Color> LightColors = new Dictionary<PlayerClass, Color>
     {
-        { PlayerClass.Assassin, new Color(0.6f, 0.1f, 0.9f) },         // violet
-        { PlayerClass.Blacksmith, new Color(0.15f, 0.4f, 1f) },        // bleu
-        { PlayerClass.Druid, new Color(0.25f, 0.85f, 0.25f) },         // vert
-        { PlayerClass.Necromancer, new Color(0.05f, 0.35f, 0.15f) },   // vert foncé
-        { PlayerClass.Paladin, new Color(0.55f, 1f, 0.55f) },          // vert clair
-        { PlayerClass.Scout, new Color(0.2f, 0.9f, 0.9f) },            // cyan
-        { PlayerClass.TreasureHunter, new Color(0.05f, 0.35f, 0.15f) }, // vert foncé
-        { PlayerClass.Warrior, new Color(0.9f, 0.1f, 0.1f) },          // rouge
+        { PlayerClass.Warrior, new Color(0.9f, 0.1f, 0.1f) },     // rouge
+        { PlayerClass.Paladin, new Color(0.1f, 0.2f, 0.9f) },     // bleu
+        { PlayerClass.Scout, new Color(0.9f, 0.9f, 0.1f) },       // jaune
+        { PlayerClass.Druid, new Color(0.25f, 0.85f, 0.25f) },    // vert
+        { PlayerClass.Mage, new Color(0.6f, 0.1f, 0.9f) },        // violet
     };
 
     public static void PlayCastEffect(PlayerAvatar caster, PlayerClass playerClass, float duration)

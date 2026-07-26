@@ -1,14 +1,15 @@
 ﻿public enum PlayerClass
 {
     None,
-    Assassin,
-    Blacksmith,
-    Druid,
-    Monk,
-    Necromancer,
+    Warrior,
     Paladin,
-    Ranger,
     Scout,
-    TreasureHunter,
-    Warrior
+    Druid,
+    Mage
+}
+
+public enum SkillSlot
+{
+    Primary,
+    Secondary
 }

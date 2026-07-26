@@ -18,9 +18,15 @@ internal static class SkillPatch
         if (SemiFunc.RunIsLevel())
         {
             SkillManager.Update();
+
             if (Input.GetKeyDown(Plugin.SkillKey.Value))
             {
-                SkillManager.TryUseSkill();
+                SkillManager.TryUseSkill(SkillSlot.Primary);
+            }
+
+            if (Input.GetKeyDown(Plugin.SkillKey2.Value))
+            {
+                SkillManager.TryUseSkill(SkillSlot.Secondary);
             }
         }
         else

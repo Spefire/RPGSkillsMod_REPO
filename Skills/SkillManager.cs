@@ -1,32 +1,49 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 internal static class SkillManager
 {
-    private static float remainingCooldown = 0f;
+    private static float remainingCooldownPrimary = 0f;
+    private static float remainingCooldownSecondary = 0f;
 
-    public static bool IsReady => remainingCooldown <= 0f;
+    public static bool IsReady(SkillSlot slot)
+    {
+        return RemainingCooldown(slot) <= 0f;
+    }
 
-    public static float RemainingCooldown => Mathf.Max(0f, remainingCooldown);
+    public static float RemainingCooldown(SkillSlot slot)
+    {
+        return Mathf.Max(0f, slot == SkillSlot.Primary ? remainingCooldownPrimary : remainingCooldownSecondary);
+    }
 
     public static void Update()
     {
-        if (remainingCooldown > 0f)
+        if (remainingCooldownPrimary > 0f)
         {
-            remainingCooldown -= Time.deltaTime;
+            remainingCooldownPrimary -= Time.deltaTime;
 
-            if (remainingCooldown < 0f)
-                remainingCooldown = 0f;
+            if (remainingCooldownPrimary < 0f)
+                remainingCooldownPrimary = 0f;
         }
 
-        SkillDatabase.Get(Plugin.SelectedClass).Update();
+        if (remainingCooldownSecondary > 0f)
+        {
+            remainingCooldownSecondary -= Time.deltaTime;
+
+            if (remainingCooldownSecondary < 0f)
+                remainingCooldownSecondary = 0f;
+        }
+
+        SkillDatabase.Get(Plugin.SelectedClass, SkillSlot.Primary).Update();
+        SkillDatabase.Get(Plugin.SelectedClass, SkillSlot.Secondary).Update();
     }
 
-    public static bool TryUseSkill()
+    public static bool TryUseSkill(SkillSlot slot)
     {
-        if (!IsReady)
+        if (!IsReady(slot))
             return false;
 
-        Skill skill = SkillDatabase.Get(Plugin.SelectedClass);
+        Skill skill = SkillDatabase.Get(Plugin.SelectedClass, slot);
 
         if (!skill.Execute())
             return false;
@@ -34,9 +51,19 @@ internal static class SkillManager
         Plugin.Log.LogInfo($"Using skill : {skill.Name}");
         AnnounceSkillInChat(skill);
 
-        SkillVfx.PlayCastEffect(PlayerAvatar.instance, Plugin.SelectedClass, skill.ActiveDuration);
+        if (slot == SkillSlot.Primary)
+            remainingCooldownPrimary = skill.Cooldown;
+        else
+            remainingCooldownSecondary = skill.Cooldown;
 
-        remainingCooldown = skill.Cooldown;
+        try
+        {
+            SkillVfx.PlayCastEffect(PlayerAvatar.instance, Plugin.SelectedClass, skill.ActiveDuration);
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"SkillVfx failed: {ex}");
+        }
 
         return true;
     }
@@ -49,6 +76,7 @@ internal static class SkillManager
 
     public static void ResetCooldown()
     {
-        remainingCooldown = 0f;
+        remainingCooldownPrimary = 0f;
+        remainingCooldownSecondary = 0f;
     }
 }

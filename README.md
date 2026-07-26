@@ -1,6 +1,6 @@
 # RPG Skills Mod
 
-Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
+Adds RPG classes to R.E.P.O., each with unique active skills.
 
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange)
 ![Testing](https://img.shields.io/badge/Testing-Active-yellow)
@@ -11,29 +11,31 @@ Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 
 ## Features
 
-- 10 playable classes, each with a unique active skill (plus a "None" option)
-- Cooldown system with an in-game HUD showing readiness / remaining time
+- 5 playable classes, each with 2 unique active skills (plus a "None" option)
+- Cooldown system with an in-game HUD showing readiness / remaining time, per skill
 - Class selection in the shop and lobby, with an in-level HUD
 - Configurable keybinds and an on/off toggle (BepInEx config)
 - Save compatibility: your selected class is stored per save file
 
 ## Classes & Skills
 
-| Class | Skill | Effect | Status |
+| Class | Skills | Effect | Status |
 |---|---|---|---|
-| Warrior | Berserk | Temporarily increases your strength. | ✅ OK |
 | Druid | Nature's Blessing | Heals nearby allies within a small radius, sharing a fixed pool of health. | 🧪 Testing |
-| Necromancer | Raise Dead | Sacrifices your own health to revive yourself, or a fallen ally whose severed head you're holding. | 🧪 Testing |
-| Assassin | Phantom | Become invisible and undetectable by enemies for a short time, floating like a ghost. | ✅ OK |
-| Scout | Best Runner | Grants infinite stamina for a short duration. | ✅ OK  |
+| | Raise Dead | Sacrifices your own health to revive yourself, or a fallen ally whose severed head you're holding. | 🧪 Testing |
+| Warrior | Berserk | Temporarily increases your strength. | ✅ OK |
+| | Predator Sense | Reveals nearby enemies, even through walls, for a short time. | 🧪 Testing |
+| Scout | Best Runner | Grants infinite stamina for a short duration. | ✅ OK |
+| | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |
 | Paladin | Divine Taunt | Grants temporary invulnerability to all damage, but forces nearby enemies to focus you. | ✅ OK |
-| Blacksmith | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
-| Treasure Hunter | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |
-| Ranger | Predator Sense | Reveals nearby enemies, even through walls, for a short time. | 🧪 Testing |
-| Monk | Shockwave | Releases a shockwave that pushes back and briefly stuns all nearby enemies. | 🧪 Testing |
+| | Shockwave | Releases a shockwave that pushes back and briefly stuns all nearby enemies. | 🧪 Testing |
+| Mage | Phantom | Become invisible and undetectable by enemies for a short time, floating like a ghost. | ✅ OK |
+| | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
+
 ## Controls
 
-- F  -> Use skill
+- F  -> Use primary skill
+- G  -> Use secondary skill
 - F6 -> Previous class
 - F8 -> Next class
 

@@ -16,6 +16,7 @@ public class Plugin : BaseUnityPlugin
     public static ConfigEntry<KeyCode> PreviousClassKey;
     public static ConfigEntry<KeyCode> NextClassKey;
     public static ConfigEntry<KeyCode> SkillKey;
+    public static ConfigEntry<KeyCode> SkillKey2;
 
     internal static ManualLogSource Log;
 
@@ -51,7 +52,14 @@ public class Plugin : BaseUnityPlugin
             "Controls",
             "SkillKey",
             KeyCode.F,
-            "Key used to activate the skill."
+            "Key used to activate the primary skill."
+        );
+
+        SkillKey2 = Config.Bind(
+            "Controls",
+            "SkillKey2",
+            KeyCode.G,
+            "Key used to activate the secondary skill."
         );
 
         Log.LogInfo($"{ModName} loaded...");
