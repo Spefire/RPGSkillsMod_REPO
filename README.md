@@ -24,11 +24,11 @@ Adds RPG classes to R.E.P.O., each with unique active skills.
 | Druid | Nature's Blessing | Heals nearby allies within a small radius, sharing a fixed pool of health. | 🧪 Testing |
 | | Raise Dead | Sacrifices your own health to revive yourself, or a fallen ally whose severed head you're holding. | 🧪 Testing |
 | Warrior | Berserk | Temporarily increases your strength. | ✅ OK |
-| | Predator Sense | Reveals nearby enemies, even through walls, for a short time. | 🧪 Testing |
+| | Predator Sense | Reveals nearby enemies, even through walls, for a short time. | ❌ Broken |
 | Scout | Best Runner | Grants infinite stamina for a short duration. | ✅ OK |
 | | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |
 | Paladin | Divine Taunt | Grants temporary invulnerability to all damage, but forces nearby enemies to focus you. | ✅ OK |
-| | Shockwave | Releases a shockwave that pushes back and briefly stuns all nearby enemies. | 🧪 Testing |
+| | Shockwave | Releases a powerful shockwave that launches back and briefly stuns all nearby enemies. | 🧪 Testing |
 | Mage | Phantom | Become invisible and undetectable by enemies for a short time, floating like a ghost. | ✅ OK |
 | | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
 

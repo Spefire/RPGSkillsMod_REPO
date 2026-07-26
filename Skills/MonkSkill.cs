@@ -2,15 +2,15 @@ using UnityEngine;
 
 internal class MonkSkill : Skill
 {
-    private const float Radius = 10f;
+    private const float Radius = 12f;
     private const float StunDuration = 3f;
-    private const float PushForce = 12f;
-    private const float UpwardForce = 4f;
+    private const float ExplosionForce = 35f;
+    private const float UpwardsModifier = 3f;
 
     public MonkSkill()
     {
         Name = "Shockwave";
-        Description = "Releases a shockwave that pushes back and briefly stuns all nearby enemies.";
+        Description = "Releases a powerful shockwave that launches back and briefly stuns all nearby enemies.";
         Cooldown = Plugin.DebugAllow ? 20f : 75f;
         ActiveDuration = StunDuration;
 
@@ -20,17 +20,26 @@ internal class MonkSkill : Skill
 
     public override bool Execute()
     {
-        PushBackNearbyEnemies();
+        PlayerAvatar caster = PlayerAvatar.instance;
+
+        PushBackNearbyEnemies(caster);
+
+        try
+        {
+            SkillVfx.PlayShockwaveEffect(caster.transform.position, Plugin.SelectedClass, Radius);
+        }
+        catch (System.Exception ex)
+        {
+            Plugin.Log.LogWarning($"Shockwave VFX failed: {ex}");
+        }
 
         Plugin.Log.LogInfo("Monk skill used.");
 
         return true;
     }
 
-    private void PushBackNearbyEnemies()
+    private void PushBackNearbyEnemies(PlayerAvatar caster)
     {
-        PlayerAvatar caster = PlayerAvatar.instance;
-
         foreach (Enemy enemy in Object.FindObjectsOfType<Enemy>())
         {
             Vector3 offset = enemy.CenterTransform.position - caster.transform.position;
@@ -50,21 +59,17 @@ internal class MonkSkill : Skill
             if (stunned != null)
                 stunned.Set(StunDuration);
 
-            // TODO:
-            // Rigidbody is a plain Unity component that lives on the same
-            // GameObject as the (internal) EnemyRigidbody wrapper -
-            // grabbing it directly avoids needing that internal type's
-            // private "rb" field. PushForce/UpwardForce weren't verified
-            // against real enemy masses; tune if enemies barely move or
-            // get launched too far.
             Rigidbody rb = enemy.GetComponent<Rigidbody>();
 
             if (rb == null)
                 continue;
 
-            Vector3 direction = distance > 0.01f ? offset.normalized : Vector3.forward;
-
-            rb.AddForce(direction * PushForce + Vector3.up * UpwardForce, ForceMode.Impulse);
+            // AddExplosionForce gives a natural distance falloff (strong up
+            // close, weaker near the edge of the radius) instead of the
+            // previous flat push, which reads as a much more powerful
+            // "shockwave" impact - same built-in Unity API real explosions
+            // (e.g. grenades) commonly rely on.
+            rb.AddExplosionForce(ExplosionForce, caster.transform.position, Radius, UpwardsModifier, ForceMode.Impulse);
         }
     }
 }
