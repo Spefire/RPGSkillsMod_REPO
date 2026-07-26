@@ -1,18 +1,16 @@
-using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
 internal class RangerSkill : Skill
 {
-    private const float Radius = 20f;
-    private const float Duration = 8f;
-
-    private static readonly Color RevealLightColor = new Color(1f, 0.2f, 0.2f);
+    private const float Radius = 30f;
+    private const float Duration = 20f;
 
     public RangerSkill()
     {
         Name = "Predator Sense";
-        Description = "Reveals nearby enemies, even through walls, for a short time.";
-        Cooldown = Plugin.DebugAllow ? 20f : 45f;
+        Description = "Marks nearby enemies on the map and with a glow, even through walls, revealing them to every player for a short time.";
+        Cooldown = Plugin.DebugAllow ? 20f : 60f;
         ActiveDuration = Duration;
 
         Properties.Add($"Radius: {Radius}m");
@@ -21,19 +19,23 @@ internal class RangerSkill : Skill
 
     public override bool Execute()
     {
-        RevealNearbyEnemies();
-
-        Plugin.Log.LogInfo("Ranger skill used.");
-
-        return true;
-    }
-
-    private void RevealNearbyEnemies()
-    {
         PlayerAvatar caster = PlayerAvatar.instance;
+
+        if (caster == null)
+            return false;
+
+        int revealed = 0;
 
         foreach (Enemy enemy in Object.FindObjectsOfType<Enemy>())
         {
+            if (enemy == null || enemy.CenterTransform == null)
+                continue;
+
+            EnemyParent enemyParent = enemy.GetComponentInParent<EnemyParent>();
+
+            if (enemyParent == null)
+                continue;
+
             float distance = Vector3.Distance(
                 enemy.CenterTransform.position,
                 caster.transform.position);
@@ -41,38 +43,33 @@ internal class RangerSkill : Skill
             if (distance > Radius)
                 continue;
 
-            SpawnRevealMarker(caster, enemy);
+            RevealEnemy(enemyParent);
+            revealed++;
         }
+
+        Plugin.Log.LogInfo($"Ranger skill used, revealed {revealed} enemies.");
+
+        return true;
     }
 
-    // TODO:
-    // No API was found to force an enemy to be "seen" through walls - the
-    // game's own detection systems all work the other way around (the
-    // ENEMY's vision of the PLAYER, e.g. EnemyVision/EnemyVisionFreezeTimerSet).
-    // Simplest robust approach instead: a plain point light attached to
-    // the enemy, ignoring line of sight entirely, so it stays visible to
-    // the caster regardless of walls/darkness.
-    private void SpawnRevealMarker(PlayerAvatar caster, Enemy enemy)
+    private void RevealEnemy(EnemyParent enemyParent)
     {
-        GameObject markerObject = new GameObject("RPG_RevealLight");
+        EnemyMapReveal reveal = enemyParent.GetComponent<EnemyMapReveal>();
 
-        markerObject.transform.SetParent(enemy.CenterTransform, false);
-        markerObject.transform.localPosition = Vector3.zero;
+        if (reveal == null)
+            reveal = enemyParent.gameObject.AddComponent<EnemyMapReveal>();
 
-        Light marker = markerObject.AddComponent<Light>();
-        marker.type = LightType.Point;
-        marker.color = RevealLightColor;
-        marker.range = 6f;
-        marker.intensity = 3f;
+        if (SemiFunc.IsMultiplayer())
+        {
+            PhotonView photonView = enemyParent.GetComponent<PhotonView>();
 
-        caster.StartCoroutine(DestroyAfter(markerObject, Duration));
-    }
+            if (photonView != null)
+            {
+                photonView.RPC(nameof(EnemyMapReveal.RevealRPC), RpcTarget.All, Duration);
+                return;
+            }
+        }
 
-    private IEnumerator DestroyAfter(GameObject markerObject, float duration)
-    {
-        yield return new WaitForSeconds(duration);
-
-        if (markerObject != null)
-            Object.Destroy(markerObject);
+        reveal.RevealRPC(Duration);
     }
 }

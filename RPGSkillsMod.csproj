@@ -46,6 +46,9 @@
     <Reference Include="PhotonUnityNetworking">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\PhotonUnityNetworking.dll</HintPath>
     </Reference>
+    <Reference Include="PhotonRealtime">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\PhotonRealtime.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -88,6 +91,8 @@
     <Compile Include="Skills\NecromancerSkill.cs" />
     <Compile Include="Skills\PaladinSkill.cs" />
     <Compile Include="Skills\RangerSkill.cs" />
+    <Compile Include="Skills\EnemyMapReveal.cs" />
+    <Compile Include="Skills\EnemyRevealPatch.cs" />
     <Compile Include="Skills\ScoutSkill.cs" />
     <Compile Include="Skills\TreasureHunterSkill.cs" />
     <Compile Include="Skills\WarriorSkill.cs" />

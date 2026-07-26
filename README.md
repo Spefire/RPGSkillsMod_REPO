@@ -5,7 +5,6 @@ Adds RPG classes to R.E.P.O., each with unique active skills.
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange)
 ![Testing](https://img.shields.io/badge/Testing-Active-yellow)
 
-> [!WARNING]
 > This plugin is currently under active development and testing.
 > Features, balance, and behavior may change between versions.
 
@@ -24,7 +23,7 @@ Adds RPG classes to R.E.P.O., each with unique active skills.
 | Druid | Nature's Blessing | Heals nearby allies within a small radius, sharing a fixed pool of health. | 🧪 Testing |
 | | Raise Dead | Sacrifices your own health to revive yourself, or a fallen ally whose severed head you're holding. | 🧪 Testing |
 | Warrior | Berserk | Temporarily increases your strength. | ✅ OK |
-| | Predator Sense | Reveals nearby enemies, even through walls, for a short time. | ❌ Broken |
+| | Predator Sense | Marks nearby enemies on every player map for a short time. | ✅ OK |
 | Scout | Best Runner | Grants infinite stamina for a short duration. | ✅ OK |
 | | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |
 | Paladin | Divine Taunt | Grants temporary invulnerability to all damage, but forces nearby enemies to focus you. | ✅ OK |
