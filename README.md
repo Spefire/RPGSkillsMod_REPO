@@ -28,7 +28,7 @@ Adds RPG classes to R.E.P.O., each with unique active skills.
 | Scout | Best Runner | Grants infinite stamina for a short duration. | ✅ OK |
 | | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |
 | Paladin | Divine Taunt | Grants temporary invulnerability to all damage, but forces nearby enemies to focus you. | ✅ OK |
-| | Shockwave | Releases a powerful shockwave that launches back and briefly stuns all nearby enemies. | 🧪 Testing |
+| | Shockwave | Releases a powerful shockwave that launches back and briefly stuns all nearby enemies. | ✅ OK |
 | Mage | Phantom | Become invisible and undetectable by enemies for a short time, floating like a ghost. | ✅ OK |
 | | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
 

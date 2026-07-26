@@ -6,7 +6,27 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ---
 
-## [0.5.0] - Visual feedback & Necromancer rework
+## [0.6.0] - Reconsolidation: 2 skills per class
+
+### Changed
+
+* Consolidated the 10 classes down to **5**, each now wielding **2 independent active skills** instead of one:
+  * **Warrior**: *Berserk* + *Predator Sense* (merged from Ranger)
+  * **Paladin**: *Divine Taunt* + *Shockwave* (merged from Monk)
+  * **Scout**: *Best Runner* + *Treasure Sense* (merged from Treasure Hunter)
+  * **Druid**: *Nature's Blessing* + *Raise Dead* (merged from Necromancer)
+  * **Mage**: *Phantom* (merged from Assassin) + *Reinforce* (merged from Blacksmith)
+* Each skill now has its own independent cooldown, tracked and displayed separately.
+* Updated the in-game HUD to show both skills (name, description, properties, cooldown, key hint) for the selected class.
+* Updated the README's Classes & Skills table for the new 5-class/2-skill layout.
+
+### Added
+
+* Added a secondary skill key (**G** by default, configurable) to activate each class's second skill, alongside the existing primary skill key (**F**).
+
+---
+
+## [0.5.0] - Visual feedback & some skills rework
 
 ### Added
 

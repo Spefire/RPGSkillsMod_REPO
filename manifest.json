@@ -1,6 +1,6 @@
 {
   "name": "RPGSkillsMod",
-  "version_number": "0.5.1",
+  "version_number": "0.6.0",
   "website_url": "https://github.com/Spefire/RPGSkillsMod_REPO",
   "description": "Adds RPG classes and unique skills to R.E.P.O.",
   "dependencies": [
