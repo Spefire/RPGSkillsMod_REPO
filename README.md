@@ -24,7 +24,7 @@ Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 | Warrior | Berserk | Temporarily increases your strength. | ✅ OK |
 | Druid | Nature's Blessing | Heals nearby allies within a small radius, sharing a fixed pool of health. | 🧪 Testing |
 | Necromancer | Raise Dead | Sacrifices your own health to revive yourself, or a fallen ally whose severed head you're holding. | 🧪 Testing |
-| Assassin | Phantom | Become invisible and undetectable by enemies for a short time, floating like a ghost. | ❌ Broken |
+| Assassin | Phantom | Become invisible and undetectable by enemies for a short time, floating like a ghost. | ✅ OK |
 | Scout | Best Runner | Grants infinite stamina for a short duration. | ✅ OK  |
 | Paladin | Divine Taunt | Grants temporary invulnerability to all damage, but forces nearby enemies to focus you. | ✅ OK |
 | Blacksmith | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
