@@ -94,6 +94,7 @@
     <Compile Include="Skills\SkillPatch.cs" />
     <Compile Include="Skills\SkillManager.cs" />
     <Compile Include="Skills\SkillVfx.cs" />
+    <Compile Include="Skills\SkillVfxDeathPatch.cs" />
     <Compile Include="UIs\SkillUI.cs" />
     <Compile Include="PluginEnums.cs" />
     <Compile Include="UIs\ClassUI.cs" />

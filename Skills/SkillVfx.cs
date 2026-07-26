@@ -5,6 +5,7 @@ using UnityEngine;
 internal static class SkillVfx
 {
     private const float FadeOutBuffer = 1f;
+    private const string CastEffectName = "RPG_Particles";
 
     private static readonly Color DefaultLightColor = Color.white;
 
@@ -31,7 +32,7 @@ internal static class SkillVfx
             return;
 
         ParticleSystem effect = Object.Instantiate(source, caster.transform);
-        effect.gameObject.name = "RPG_Particles";
+        effect.gameObject.name = CastEffectName;
         effect.transform.localPosition = new Vector3(0f, 1.1f, 0f);
         effect.transform.localRotation = Quaternion.identity;
 
@@ -89,6 +90,31 @@ internal static class SkillVfx
 
         if (effect != null)
             Object.Destroy(effect.gameObject);
+    }
+
+    // When a player dies, their PlayerAvatar GameObject gets fully
+    // deactivated (SetActive(false)) by the game. Since PlayCastEffect's
+    // cast VFX is parented to that same transform and cleaned up by a
+    // coroutine hosted on it, deactivating the avatar silently kills that
+    // coroutine mid-way - the particle/light effect never gets stopped or
+    // destroyed. It then sits there (still "playing"/looping) inside the
+    // disabled hierarchy and reappears permanently once the avatar is
+    // reactivated (revive or respawn). Call this right when the player
+    // dies to force-clean any leftover cast VFX immediately.
+    public static void ClearActiveEffects(PlayerAvatar avatar)
+    {
+        if (avatar == null)
+            return;
+
+        Transform existing = avatar.transform.Find(CastEffectName);
+        if (existing == null)
+            return;
+
+        ParticleSystem effect = existing.GetComponent<ParticleSystem>();
+        if (effect != null)
+            effect.Stop(withChildren: true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+        Object.Destroy(existing.gameObject);
     }
 
     // Bigger, world-anchored "explosion" style burst for AoE impact skills
