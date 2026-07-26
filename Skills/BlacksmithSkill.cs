@@ -11,25 +11,33 @@ internal class BlacksmithSkill : Skill
         Cooldown = Plugin.DebugAllow ? 20f : 90f;
     }
 
-    public override void Execute()
+    public override bool Execute()
     {
-        ReinforceHeldItem();
+        if (!ReinforceHeldItem())
+        {
+            Plugin.Log.LogInfo("Blacksmith skill failed: no item held.");
+            return false;
+        }
 
         Plugin.Log.LogInfo("Blacksmith skill used.");
+
+        return true;
     }
 
-    private void ReinforceHeldItem()
+    private bool ReinforceHeldItem()
     {
         Transform heldTransform = PlayerAvatar.instance.physGrabber.grabbedObjectTransform;
 
         if (heldTransform == null)
-            return;
+            return false;
 
         PhysGrabObject heldObject = heldTransform.GetComponent<PhysGrabObject>();
 
         if (heldObject == null)
-            return;
+            return false;
 
         heldObject.OverrideIndestructible(IndestructibleDuration);
+
+        return true;
     }
 }

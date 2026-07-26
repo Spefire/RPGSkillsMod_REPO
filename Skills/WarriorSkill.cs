@@ -19,10 +19,10 @@ internal class WarriorSkill : Skill
         Properties.Add($"Duration: {Duration}s");
     }
 
-    public override void Execute()
+    public override bool Execute()
     {
         if (active)
-            return;
+            return false;
 
         active = true;
         timer = Duration;
@@ -33,6 +33,8 @@ internal class WarriorSkill : Skill
         PunManager.instance.UpgradePlayerThrowStrength(steamID, StrengthLevels);
 
         Plugin.Log.LogInfo("Warrior skill activated.");
+
+        return true;
     }
 
     public override void Update()

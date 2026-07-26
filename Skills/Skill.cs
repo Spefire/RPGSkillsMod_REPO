@@ -18,7 +18,7 @@ public class Skill
         Cooldown = 0f;
     }
 
-    public virtual void Execute() { }
+    public virtual bool Execute() { return true; }
 
     public virtual void Update() { }
 }

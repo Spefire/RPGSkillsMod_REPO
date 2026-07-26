@@ -16,7 +16,7 @@ internal class PaladinSkill : Skill
         Properties.Add($"Radius: {Radius}m");
     }
 
-    public override void Execute()
+    public override bool Execute()
     {
         // PlayerHealth.InvincibleSet(float) directly manages its own
         // internal invincibility timer, so there's no need to track
@@ -26,6 +26,8 @@ internal class PaladinSkill : Skill
         TauntNearbyEnemies();
 
         Plugin.Log.LogInfo("Paladin skill used.");
+
+        return true;
     }
 
     private void TauntNearbyEnemies()

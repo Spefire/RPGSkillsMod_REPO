@@ -28,10 +28,12 @@ internal static class SkillManager
 
         Skill skill = SkillDatabase.Get(Plugin.SelectedClass);
 
+        if (!skill.Execute())
+            return false;
+
         Plugin.Log.LogInfo($"Using skill : {skill.Name}");
         AnnounceSkillInChat(skill);
 
-        skill.Execute();
         SkillVfx.PlayCastEffect(PlayerAvatar.instance, Plugin.SelectedClass, skill.ActiveDuration);
 
         remainingCooldown = skill.Cooldown;

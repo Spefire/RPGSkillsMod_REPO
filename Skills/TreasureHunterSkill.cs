@@ -13,11 +13,13 @@ internal class TreasureHunterSkill : Skill
         Properties.Add($"Radius: {Radius}m");
     }
 
-    public override void Execute()
+    public override bool Execute()
     {
         RevealNearbyValuables();
 
         Plugin.Log.LogInfo("Treasure Hunter skill used.");
+
+        return true;
     }
 
     private void RevealNearbyValuables()

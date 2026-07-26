@@ -1,77 +1,80 @@
 using HarmonyLib;
-using System.Collections.Generic;
 using UnityEngine;
 
 internal class NecromancerSkill : Skill
 {
     private const int HealthSacrifice = 25;
-    private const float Radius = 10f;
 
     public NecromancerSkill()
     {
         Name = "Raise Dead";
-        Description = "Sacrifice your own health to revive a fallen ally nearby.";
+        Description = "Sacrifice your own health to revive yourself, or a fallen ally whose severed head you're holding.";
         Cooldown = Plugin.DebugAllow ? 20f : 120f;
 
         Properties.Add($"Health sacrificed: {HealthSacrifice}");
-        Properties.Add($"Radius: {Radius}m");
     }
 
-    public override void Execute()
+    public override bool Execute()
     {
-        ReviveNearbyAlly();
+        bool revived = ReviveSelfOrHeldAlly();
 
-        Plugin.Log.LogInfo("Necromancer skill used.");
+        Plugin.Log.LogInfo(revived
+            ? "Necromancer skill used."
+            : "Necromancer skill failed: not downed and not holding a dead ally's head.");
+
+        return revived;
     }
 
-    private void ReviveNearbyAlly()
+    private bool ReviveSelfOrHeldAlly()
     {
         PlayerAvatar caster = PlayerAvatar.instance;
+
+        PlayerAvatar target = FindReviveTarget(caster);
+
+        if (target == null)
+            return false;
 
         // PlayerHealth.health is internal to the game's assembly, so it
         // can't be accessed directly from our mod. Harmony's Traverse reads
         // it through reflection instead, which bypasses the access
         // modifier at runtime (this is the standard BepInEx/Harmony way to
         // reach internal/private game fields).
-        int casterHealth = Traverse.Create(caster.playerHealth).Field("health").GetValue<int>();
+        //
+        // TODO:
+        // The exact meaning of Hurt's "savingGrace", "enemyIndex" and
+        // "hurtByHeal" parameters isn't fully confirmed. Using safe-ish
+        // defaults here (no enemy involved, not a saving-grace hit).
+        caster.playerHealth.Hurt(HealthSacrifice, false, -1, false);
 
-        // Let the caster kill themselves with the sacrifice.
-        /*if (casterHealth <= HealthSacrifice)
-        {
-            Plugin.Log.LogInfo("Not enough health to sacrifice.");
-            return;
-        }*/
+        // TODO:
+        // Confirm whether "_revivedByTruck: false" is the right value
+        // here (it's the only parameter of Revive, normally used by the
+        // truck-return revive flow).
+        target.Revive(false);
 
-        List<PlayerAvatar> players = SemiFunc.PlayerGetAll();
+        return true;
+    }
 
-        foreach (PlayerAvatar player in players)
-        {
-            // PlayerAvatar.deadSet is also internal - same Traverse approach.
-            bool isDead = Traverse.Create(player).Field("deadSet").GetValue<bool>();
+    private PlayerAvatar FindReviveTarget(PlayerAvatar caster)
+    {
+        // Self-revive: if the caster is the one who's down, let them raise
+        // themselves - keep this behavior as-is, it works fine already.
+        bool casterDisabled = Traverse.Create(caster).Field("isDisabled").GetValue<bool>();
 
-            if (!isDead)
-                continue;
+        if (casterDisabled)
+            return caster;
 
-            float distance = Vector3.Distance(
-                player.transform.position,
-                caster.transform.position);
+        // Otherwise, the caster must be holding the dead ally's severed
+        // head (PlayerDeathHead) to revive them - a held object with that
+        // component links back to its owning PlayerAvatar via the public
+        // "playerAvatar" field.
+        Transform heldTransform = caster.physGrabber.grabbedObjectTransform;
 
-            if (distance > Radius)
-                continue;
+        if (heldTransform == null)
+            return null;
 
-            // TODO:
-            // The exact meaning of Hurt's "savingGrace", "enemyIndex" and
-            // "hurtByHeal" parameters isn't fully confirmed. Using safe-ish
-            // defaults here (no enemy involved, not a saving-grace hit).
-            caster.playerHealth.Hurt(HealthSacrifice, false, -1, false);
+        PlayerDeathHead deathHead = heldTransform.GetComponent<PlayerDeathHead>();
 
-            // TODO:
-            // Confirm whether "_revivedByTruck: false" is the right value
-            // here (it's the only parameter of Revive, normally used by the
-            // truck-return revive flow).
-            player.Revive(false);
-
-            break;
-        }
+        return deathHead != null ? deathHead.playerAvatar : null;
     }
 }
