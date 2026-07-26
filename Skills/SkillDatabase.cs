@@ -21,12 +21,20 @@ public static class SkillDatabase
             new DruidSkill()
         },
         {
+            PlayerClass.Monk,
+            new MonkSkill()
+        },
+        {
             PlayerClass.Necromancer,
             new NecromancerSkill()
         },
         {
             PlayerClass.Paladin,
             new PaladinSkill()
+        },
+        {
+            PlayerClass.Ranger,
+            new RangerSkill()
         },
         {
             PlayerClass.Scout,

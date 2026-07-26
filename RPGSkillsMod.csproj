@@ -84,8 +84,10 @@
     <Compile Include="Skills\AssassinSkill.cs" />
     <Compile Include="Skills\BlacksmithSkill.cs" />
     <Compile Include="Skills\DruidSkill.cs" />
+    <Compile Include="Skills\MonkSkill.cs" />
     <Compile Include="Skills\NecromancerSkill.cs" />
     <Compile Include="Skills\PaladinSkill.cs" />
+    <Compile Include="Skills\RangerSkill.cs" />
     <Compile Include="Skills\ScoutSkill.cs" />
     <Compile Include="Skills\TreasureHunterSkill.cs" />
     <Compile Include="Skills\WarriorSkill.cs" />

@@ -11,7 +11,7 @@ Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 
 ## Features
 
-- 8 playable classes, each with a unique active skill (plus a "None" option)
+- 10 playable classes, each with a unique active skill (plus a "None" option)
 - Cooldown system with an in-game HUD showing readiness / remaining time
 - Class selection in the shop and lobby, with an in-level HUD
 - Configurable keybinds and an on/off toggle (BepInEx config)
@@ -29,7 +29,8 @@ Adds RPG classes to R.E.P.O., each with a unique active skill on a cooldown.
 | Paladin | Divine Taunt | Grants temporary invulnerability to all damage, but forces nearby enemies to focus you. | ✅ OK |
 | Blacksmith | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
 | Treasure Hunter | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |
-
+| Ranger | Predator Sense | Reveals nearby enemies, even through walls, for a short time. | 🧪 Testing |
+| Monk | Shockwave | Releases a shockwave that pushes back and briefly stuns all nearby enemies. | 🧪 Testing |
 ## Controls
 
 - F  -> Use skill
