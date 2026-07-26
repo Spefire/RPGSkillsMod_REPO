@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using HarmonyLib;
 using TMPro;
 using UnityEngine;
 
@@ -99,7 +100,13 @@ internal static class SkillUI
         Skill skill = SkillDatabase.Get(Plugin.SelectedClass);
         skillText.text = skill.Name;
         lobbyDescription.text = skill.Description;
-        lobbyProperties.text = string.Join("\n", skill.Properties.ConvertAll(p => $"• {p}"));
+
+        List<string> properties = new List<string>(skill.Properties)
+        {
+            $"Cooldown: {skill.Cooldown:0}s"
+        };
+
+        lobbyProperties.text = string.Join("\n", properties.ConvertAll(p => $"• {p}"));
     }
 
     private static void RefreshLevel()
