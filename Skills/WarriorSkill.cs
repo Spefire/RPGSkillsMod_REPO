@@ -5,7 +5,7 @@ internal class WarriorSkill : Skill
     private bool active;
     private float timer;
 
-    private const int StrengthLevels = 10;
+    private const int StrengthLevels = 20;
     private const float Duration = 15f;
 
     public WarriorSkill()

@@ -2,10 +2,10 @@ using UnityEngine;
 
 internal class MonkSkill : Skill
 {
-    private const float Radius = 12f;
-    private const float StunDuration = 3f;
+    private const float Radius = 10f;
+    private const float StunDuration = 5f;
     private const float ExplosionForce = 35f;
-    private const float UpwardsModifier = 3f;
+    private const float UpwardsModifier = 5f;
 
     public MonkSkill()
     {

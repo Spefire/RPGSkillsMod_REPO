@@ -4,7 +4,7 @@ using UnityEngine;
 
 internal class DruidSkill : Skill
 {
-    private const int Health = 40;
+    private const int Health = 50;
     private const float Radius = 5f;
 
     public DruidSkill()
