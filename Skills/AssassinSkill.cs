@@ -7,6 +7,7 @@ internal class AssassinSkill : Skill
         Name = "Shadow Step";
         Description = "Become invisible and undetectable by enemies for a short time.";
         Cooldown = Plugin.DebugAllow ? 20f : 60f;
+        ActiveDuration = Duration;
 
         Properties.Add($"Duration: {Duration}s");
     }

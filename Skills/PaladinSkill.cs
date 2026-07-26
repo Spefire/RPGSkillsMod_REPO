@@ -10,6 +10,7 @@ internal class PaladinSkill : Skill
         Name = "Divine Taunt";
         Description = "Grants temporary invulnerability to all damage, but forces nearby enemies to focus you.";
         Cooldown = Plugin.DebugAllow ? 20f : 60f;
+        ActiveDuration = Duration;
 
         Properties.Add($"Duration: {Duration}s");
         Properties.Add($"Radius: {Radius}m");

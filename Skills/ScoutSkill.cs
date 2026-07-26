@@ -12,6 +12,7 @@ internal class ScoutSkill : Skill
         Name = "Best Runner";
         Description = "Grants infinite stamina for a short duration.";
         Cooldown = Plugin.DebugAllow ? 20f : 60f;
+        ActiveDuration = Duration;
 
         Properties.Add($"Duration: {Duration}s");
     }

@@ -13,6 +13,7 @@ internal class WarriorSkill : Skill
         Name = "Berserk";
         Description = "Temporarily increases your strength.";
         Cooldown = Plugin.DebugAllow ? 20f : 90f;
+        ActiveDuration = Duration;
 
         Properties.Add($"Strength levels: +{StrengthLevels}");
         Properties.Add($"Duration: {Duration}s");

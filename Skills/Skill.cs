@@ -8,6 +8,8 @@ public class Skill
 
     public float Cooldown { get; set; }
 
+    public float ActiveDuration { get; protected set; } = 2f;
+
     public Skill()
     {
         Name = "No skill";
