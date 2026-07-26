@@ -6,6 +6,28 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ---
 
+## [0.5.0] - Visual feedback & Necromancer rework
+
+### Added
+
+* Added a visual/light cast effect that plays on the caster whenever a skill is used, colored per class.
+
+### Changed
+
+* Renamed the Assassin's *Shadow Step* to **Phantom**, and added a floating (zero-gravity) effect on top of the existing invisibility.
+* Reworked the Necromancer's *Raise Dead*: reviving an ally now requires physically holding their severed head, instead of an unreliable nearby-ally radius check that rarely worked.
+
+### Fixed
+
+* Fixed an exception in the skill cast effect potentially aborting skill activation before the cooldown was applied.
+* Fixed the Druid's skill and description.
+
+### Known Issues
+
+* Assassin's *Phantom* only prevents **new** enemy detections; it doesn't un-taunt enemies that are already chasing the caster when the skill is used.
+
+---
+
 ## [0.4.0] - Reliability pass
 
 ### Changed
