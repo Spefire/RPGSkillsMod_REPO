@@ -21,7 +21,7 @@ why the skill failed.
 ### Can I disable the mod without uninstalling it?
 
 Yes, set `EnableMod` to `false` in the config file (see
-[Configuration](Configuration.md)).
+[Configuration](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/CHANGELOG.md)).
 
 ### Is this mod multiplayer-safe?
 
