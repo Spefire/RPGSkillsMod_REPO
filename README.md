@@ -18,18 +18,13 @@ Adds RPG classes to R.E.P.O., each with unique active skills.
 
 ## Classes & Skills
 
-| Class | Skills | Effect | Status |
-|---|---|---|---|
-| Druid | Nature's Blessing | Heal nearby allies within a small radius. | 🧪 Testing |
-| | Raise Dead | Sacrifice your own health to revive yourself, or a fallen ally. | 🧪 Testing |
-| Warrior | Berserk | Increases your strength. | ✅ OK |
-| | Predator Sense | Marks nearby enemies on the map, revealing them to every player. | ✅ OK |
-| Scout | Best Runner | Grants infinite stamina. | ✅ OK |
-| | Treasure Sense | Reveals valuable items around you. | ✅ OK |
-| Paladin | Divine Taunt | Grants invulnerability, but forces nearby enemies to focus you. | ✅ OK |
-| | Shockwave | Releases a powerful shockwave, stunning all nearby enemies. | ✅ OK |
-| Mage | Phantom | Become undetectable by enemies, floating like a ghost. | ✅ OK |
-| | Reinforce | Makes the item you're currently holding unbreakable. | ✅ OK |
+- **Druid** — Nature's Blessing, Raise Dead 🧪 *(testing)*
+- **Warrior** — Berserk, Predator Sense
+- **Scout** — Best Runner, Treasure Sense
+- **Paladin** — Divine Taunt, Shockwave
+- **Mage** — Phantom, Reinforce
+
+Full effect descriptions, cooldowns, radius and durations for every skill are on the **[Wiki](https://thunderstore.io/c/repo/p/Spefire/RPGSkillsMod/wiki)**.
 
 ## Controls
 
