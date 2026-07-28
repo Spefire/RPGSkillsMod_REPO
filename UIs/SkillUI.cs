@@ -95,10 +95,16 @@ internal static class SkillUI
         UnityEngine.Object.Destroy(skillUI.GetComponent<EnergyUI>());
         UnityEngine.Object.Destroy(skillUI2.GetComponent<EnergyUI>());
 
-        // Supprime les anciens enfants de l'UI Energy
-        DestroyChild("EnergyMax");
-        DestroyChild("Zap");
-        DestroyChild("Scanlines");
+        // Supprime TOUS les anciens enfants de l'UI Energy clonée (on
+        // reconstruit tout nous-mêmes avec CreateText juste après). L'ancien
+        // code ne détruisait que 3 enfants connus par leur nom ("EnergyMax",
+        // "Zap", "Scanlines"), ce qui laissait passer d'éventuels autres
+        // enfants du prefab EnergyUI d'origine (ex: un objet "Description"
+        // avec un TMP_SpriteAnimator repéré dans l'inspecteur runtime) qui
+        // entrait alors en collision de nom avec notre propre "Description"
+        // créé plus bas.
+        DestroyAllChildren(skillUI);
+        DestroyAllChildren(skillUI2);
 
         // Configure le texte principal
         skillText = skillUI.GetComponent<TextMeshProUGUI>();
@@ -233,16 +239,9 @@ internal static class SkillUI
         return tmp;
     }
 
-    private static void DestroyChild(string child)
+    private static void DestroyAllChildren(GameObject parent)
     {
-        Transform t = skillUI.transform.Find(child);
-
-        if (t != null)
-            UnityEngine.Object.Destroy(t.gameObject);
-
-        Transform t2 = skillUI2.transform.Find(child);
-
-        if (t2 != null)
-            UnityEngine.Object.Destroy(t2.gameObject);
+        for (int i = parent.transform.childCount - 1; i >= 0; i--)
+            UnityEngine.Object.Destroy(parent.transform.GetChild(i).gameObject);
     }
 }

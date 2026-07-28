@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Photon.Pun;
 using UnityEngine;
 
 internal class NecromancerSkill : Skill
@@ -46,13 +47,31 @@ internal class NecromancerSkill : Skill
         // defaults here (no enemy involved, not a saving-grace hit).
         caster.playerHealth.Hurt(HealthSacrifice, false, -1, false);
 
-        // TODO:
-        // Confirm whether "_revivedByTruck: false" is the right value
-        // here (it's the only parameter of Revive, normally used by the
-        // truck-return revive flow).
-        target.Revive(false);
+        ReviveTarget(target);
 
         return true;
+    }
+
+    private void ReviveTarget(PlayerAvatar target)
+    {
+        // See NecromancerReviveRelay for why this can't just be
+        // "target.Revive(false)" directly: PlayerAvatar.Revive's own RPC
+        // is gated to only actually take effect when sent by the master
+        // client, so a non-host caster reviving anyone (even themselves)
+        // would otherwise silently fail.
+        if (SemiFunc.IsMultiplayer())
+        {
+            NecromancerReviveRelay relay = target.GetComponent<NecromancerReviveRelay>();
+
+            if (relay == null)
+                relay = target.gameObject.AddComponent<NecromancerReviveRelay>();
+
+            target.photonView.RPC(nameof(NecromancerReviveRelay.RequestReviveRPC), RpcTarget.MasterClient, false);
+        }
+        else
+        {
+            target.Revive(false);
+        }
     }
 
     private PlayerAvatar FindReviveTarget(PlayerAvatar caster)
