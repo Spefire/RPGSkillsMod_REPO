@@ -18,11 +18,13 @@ Adds RPG classes to R.E.P.O., each with unique active skills.
 
 ## Classes & Skills
 
-- **Druid** — Nature's Blessing, Raise Dead 🧪 *(testing)*
-- **Warrior** — Berserk, Predator Sense
-- **Scout** — Best Runner, Treasure Sense
-- **Paladin** — Divine Taunt, Shockwave
-- **Mage** — Phantom, Reinforce
+| Class | Skills | Status |
+|---|---|---|
+| **Warrior** | Berserk, Predator Sense | ✅ OK |
+| **Paladin** | Divine Taunt, Shockwave | ✅ OK |
+| **Scout** | Best Runner, Treasure Sense | ✅ OK |
+| **Druid** | Nature's Blessing, Raise Dead | 🧪 Testing |
+| **Mage** | Phantom, Reinforce | ✅ OK |
 
 Full effect descriptions, cooldowns, radius and durations for every skill are on the **[Wiki](https://thunderstore.io/c/repo/p/Spefire/RPGSkillsMod/wiki)**.
 
