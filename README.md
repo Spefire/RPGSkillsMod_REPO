@@ -2,11 +2,10 @@
 
 Adds RPG classes to R.E.P.O., each with unique active skills.
 
-![Status](https://img.shields.io/badge/Status-In%20Development-orange)
-![Testing](https://img.shields.io/badge/Testing-Active-yellow)
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
+![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 
-> This plugin is currently under active development and testing.
-> Features, balance, and behavior may change between versions.
+> This plugin has completed its testing phase and is now stable.
 
 ## Features
 
@@ -23,17 +22,17 @@ Adds RPG classes to R.E.P.O., each with unique active skills.
 | **Warrior** | Berserk, Predator Sense | ✅ OK |
 | **Paladin** | Divine Taunt, Shockwave | ✅ OK |
 | **Scout** | Best Runner, Treasure Sense | ✅ OK |
-| **Druid** | Nature's Blessing, Raise Dead | 🧪 Testing |
+| **Druid** | Nature's Blessing, Raise Dead | ✅ OK |
 | **Mage** | Phantom, Reinforce | ✅ OK |
 
 Full effect descriptions, cooldowns, radius and durations for every skill are on the **[Wiki](https://thunderstore.io/c/repo/p/Spefire/RPGSkillsMod/wiki)**.
 
 ## Controls
 
-- F  -> Use primary skill
-- G  -> Use secondary skill
-- F6 -> Previous class
-- F8 -> Next class
+- `F`  -> Use primary skill
+- `G`  -> Use secondary skill
+- `F6` -> Previous class
+- `F8` -> Next class
 
 These keybinds, as well as enabling/disabling the mod, can be changed in the BepInEx configuration file.
 
