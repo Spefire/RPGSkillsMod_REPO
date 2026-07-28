@@ -10,7 +10,7 @@ internal class DruidSkill : Skill
     public DruidSkill()
     {
         Name = "Nature's Blessing";
-        Description = "Heal nearby allies within a small radius, sharing a fixed pool of health.";
+        Description = "Heal nearby allies within a small radius.";
         Cooldown = Plugin.DebugAllow ? 20f : 45f;
 
         Properties.Add($"Radius: {Radius}m");

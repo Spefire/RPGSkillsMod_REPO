@@ -10,7 +10,7 @@ internal class MonkSkill : Skill
     public MonkSkill()
     {
         Name = "Shockwave";
-        Description = "Releases a powerful shockwave that launches back and briefly stuns all nearby enemies.";
+        Description = "Releases a powerful shockwave, stunning all nearby enemies.";
         Cooldown = Plugin.DebugAllow ? 20f : 75f;
         ActiveDuration = StunDuration;
 

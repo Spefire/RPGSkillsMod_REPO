@@ -7,7 +7,7 @@ internal class TreasureHunterSkill : Skill
     public TreasureHunterSkill()
     {
         Name = "Treasure Sense";
-        Description = "Reveals valuable items within a radius around you.";
+        Description = "Reveals valuable items around you.";
         Cooldown = Plugin.DebugAllow ? 20f : 60f;
 
         Properties.Add($"Radius: {Radius}m");

@@ -8,7 +8,7 @@ internal class NecromancerSkill : Skill
     public NecromancerSkill()
     {
         Name = "Raise Dead";
-        Description = "Sacrifice your own health to revive yourself, or a fallen ally whose severed head you're holding.";
+        Description = "Sacrifice your own health to revive yourself, or a fallen ally.";
         Cooldown = Plugin.DebugAllow ? 20f : 120f;
 
         Properties.Add($"Health sacrificed: {HealthSacrifice}");

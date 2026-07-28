@@ -9,7 +9,7 @@ internal class RangerSkill : Skill
     public RangerSkill()
     {
         Name = "Predator Sense";
-        Description = "Marks nearby enemies on the map and with a glow, even through walls, revealing them to every player for a short time.";
+        Description = "Marks nearby enemies on the map, revealing them to every player.";
         Cooldown = Plugin.DebugAllow ? 20f : 60f;
         ActiveDuration = Duration;
 

@@ -7,7 +7,7 @@ internal class AssassinSkill : Skill
     public AssassinSkill()
     {
         Name = "Phantom";
-        Description = "Become invisible and undetectable by enemies for a short time, floating like a ghost.";
+        Description = "Become undetectable by enemies, floating like a ghost.";
         Cooldown = Plugin.DebugAllow ? 20f : 60f;
         ActiveDuration = Duration;
 

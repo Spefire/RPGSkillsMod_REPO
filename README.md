@@ -20,16 +20,16 @@ Adds RPG classes to R.E.P.O., each with unique active skills.
 
 | Class | Skills | Effect | Status |
 |---|---|---|---|
-| Druid | Nature's Blessing | Heals nearby allies within a small radius, sharing a fixed pool of health. | 🧪 Testing |
-| | Raise Dead | Sacrifices your own health to revive yourself, or a fallen ally whose severed head you're holding. | 🧪 Testing |
-| Warrior | Berserk | Temporarily increases your strength. | ✅ OK |
-| | Predator Sense | Marks nearby enemies on every player map for a short time. | ✅ OK |
-| Scout | Best Runner | Grants infinite stamina for a short duration. | ✅ OK |
-| | Treasure Sense | Reveals valuable items within a radius around you. | ✅ OK |
-| Paladin | Divine Taunt | Grants temporary invulnerability to all damage, but forces nearby enemies to focus you. | ✅ OK |
-| | Shockwave | Releases a powerful shockwave that launches back and briefly stuns all nearby enemies. | ✅ OK |
-| Mage | Phantom | Become invisible and undetectable by enemies for a short time, floating like a ghost. | ✅ OK |
-| | Reinforce | Makes the item you're currently holding unbreakable for as long as you keep holding it. | ✅ OK |
+| Druid | Nature's Blessing | Heal nearby allies within a small radius. | 🧪 Testing |
+| | Raise Dead | Sacrifice your own health to revive yourself, or a fallen ally. | 🧪 Testing |
+| Warrior | Berserk | Increases your strength. | ✅ OK |
+| | Predator Sense | Marks nearby enemies on the map, revealing them to every player. | ✅ OK |
+| Scout | Best Runner | Grants infinite stamina. | ✅ OK |
+| | Treasure Sense | Reveals valuable items around you. | ✅ OK |
+| Paladin | Divine Taunt | Grants invulnerability, but forces nearby enemies to focus you. | ✅ OK |
+| | Shockwave | Releases a powerful shockwave, stunning all nearby enemies. | ✅ OK |
+| Mage | Phantom | Become undetectable by enemies, floating like a ghost. | ✅ OK |
+| | Reinforce | Makes the item you're currently holding unbreakable. | ✅ OK |
 
 ## Controls
 
