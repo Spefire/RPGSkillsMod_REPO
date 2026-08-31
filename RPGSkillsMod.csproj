@@ -91,6 +91,9 @@
     <Compile Include="Skills\NecromancerSkill.cs" />
     <Compile Include="Skills\NecromancerReviveRelay.cs" />
     <Compile Include="Skills\NecromancerRevivePatch.cs" />
+    <Compile Include="Skills\KonamiCheatRelay.cs" />
+    <Compile Include="Skills\KonamiCheatPatch.cs" />
+    <Compile Include="Skills\KonamiCheatDetector.cs" />
     <Compile Include="Skills\PaladinSkill.cs" />
     <Compile Include="Skills\RangerSkill.cs" />
     <Compile Include="Skills\EnemyMapReveal.cs" />

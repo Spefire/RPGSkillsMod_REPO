@@ -31,7 +31,8 @@ internal static class ClassUI
             CreateUI();
 
         if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop()
-            || (Plugin.DebugAllow && SemiFunc.RunIsLevel()))
+            || (Plugin.DebugAllow && SemiFunc.RunIsLevel())
+            || (KonamiCheatRelay.FreeClassChangeUnlocked && SemiFunc.RunIsLevel()))
         {
             if (Input.GetKeyDown(Plugin.PreviousClassKey.Value))
             {
