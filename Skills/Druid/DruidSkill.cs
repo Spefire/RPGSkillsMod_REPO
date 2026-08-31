@@ -42,9 +42,6 @@ internal class DruidSkill : Skill
                 recipients.Add(player);
         }
 
-        // Players already at full health don't consume a share of the
-        // pool - they're skipped entirely so the health can go to whoever
-        // still needs it instead of being wasted.
         List<PlayerAvatar> needsHeal = new List<PlayerAvatar>();
         Dictionary<PlayerAvatar, int> missingHealth = new Dictionary<PlayerAvatar, int>();
 
@@ -64,10 +61,6 @@ internal class DruidSkill : Skill
         int pool = Health;
         Dictionary<PlayerAvatar, int> healAmounts = new Dictionary<PlayerAvatar, int>();
 
-        // Water-filling: split the remaining pool evenly among players who
-        // still need healing, capping each at their missing health so
-        // nothing is wasted overhealing someone close to full - any
-        // leftover carries over to whoever's still short in the next pass.
         while (pool > 0 && needsHeal.Count > 0)
         {
             int share = pool / needsHeal.Count;
@@ -105,8 +98,6 @@ internal class DruidSkill : Skill
         return true;
     }
 
-    // PlayerHealth.health and .maxHealth are both internal - read via
-    // Harmony's Traverse.
     private static int GetMissingHealth(PlayerAvatar player)
     {
         Traverse healthTraverse = Traverse.Create(player.playerHealth);

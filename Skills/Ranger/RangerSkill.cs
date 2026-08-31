@@ -19,10 +19,16 @@ internal class RangerSkill : Skill
 
     public override bool Execute()
     {
-        PlayerAvatar caster = PlayerAvatar.instance;
+        int revealed = RevealNearbyEnemies();
 
-        if (caster == null)
-            return false;
+        Plugin.Log.LogInfo($"Ranger skill used, revealed {revealed} enemies.");
+
+        return true;
+    }
+
+    private int RevealNearbyEnemies()
+    {
+        PlayerAvatar caster = PlayerAvatar.instance;
 
         int revealed = 0;
 
@@ -47,29 +53,18 @@ internal class RangerSkill : Skill
             revealed++;
         }
 
-        Plugin.Log.LogInfo($"Ranger skill used, revealed {revealed} enemies.");
-
-        return true;
+        return revealed;
     }
 
     private void RevealEnemy(EnemyParent enemyParent)
     {
-        EnemyMapReveal reveal = enemyParent.GetComponent<EnemyMapReveal>();
-
-        if (reveal == null)
-            reveal = enemyParent.gameObject.AddComponent<EnemyMapReveal>();
-
-        if (SemiFunc.IsMultiplayer())
+        if (!SemiFunc.IsMultiplayer())
         {
-            PhotonView photonView = enemyParent.GetComponent<PhotonView>();
-
-            if (photonView != null)
-            {
-                photonView.RPC(nameof(EnemyMapReveal.RevealRPC), RpcTarget.All, Duration);
-                return;
-            }
+            enemyParent.GetComponent<EnemyMapReveal>().RevealRPC(Duration);
         }
-
-        reveal.RevealRPC(Duration);
+        else
+        {
+            enemyParent.GetComponent<PhotonView>().RPC(nameof(EnemyMapReveal.RevealRPC), RpcTarget.All, Duration);
+        }
     }
 }

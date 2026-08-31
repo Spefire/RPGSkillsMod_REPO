@@ -26,11 +26,6 @@ internal class TreasureHunterSkill : Skill
     {
         PlayerAvatar caster = PlayerAvatar.instance;
 
-        // TODO:
-        // FindObjectsOfType is fine for a one-shot cast but is fairly slow;
-        // if this ends up being called often, consider caching the list of
-        // valuables (e.g. from EnemyDirector-style tracking, or the room
-        // volumes) instead of scanning the whole scene each time.
         foreach (ValuableObject valuable in Object.FindObjectsOfType<ValuableObject>())
         {
             float distance = Vector3.Distance(
@@ -40,9 +35,6 @@ internal class TreasureHunterSkill : Skill
             if (distance > Radius)
                 continue;
 
-            // Discover(...) is what the game itself uses to reveal a
-            // valuable (name/value popup). "Reminder"/"Bad"/"Custom" are
-            // the other State values; "Discover" matches the normal reveal.
             valuable.Discover(ValuableDiscoverGraphic.State.Discover);
         }
     }

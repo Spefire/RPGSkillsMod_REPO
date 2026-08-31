@@ -71,7 +71,6 @@ internal static class ClassUI
 
     private static void CreateUI()
     {
-        // Crée le conteneur principal
         classUI = UnityEngine.Object.Instantiate(
             EnergyUI.instance.gameObject,
             EnergyUI.instance.transform.parent);
@@ -80,12 +79,10 @@ internal static class ClassUI
 
         UnityEngine.Object.Destroy(classUI.GetComponent<EnergyUI>());
 
-        // Supprime les anciens enfants de l'UI Energy
         DestroyIfExists(classUI.transform, "EnergyMax");
         DestroyIfExists(classUI.transform, "Zap");
         DestroyIfExists(classUI.transform, "Scanlines");
 
-        // Configure le texte principal
         classText = classUI.GetComponent<TextMeshProUGUI>();
         classText.fontSize = 32;
         classText.color = Color.white;
@@ -95,7 +92,6 @@ internal static class ClassUI
         rect.sizeDelta = new Vector2(260, 30);
         rect.anchoredPosition = new Vector2(0, -62);
 
-        // Ajoute les nouveaux éléments
         leftArrow = CreateText("LeftArrow", "◀", new Vector2(-120, -25), 24, Color.yellow);
         rightArrow = CreateText("RightArrow", "▶", new Vector2(-90, -25), 24, Color.yellow);
 
@@ -121,7 +117,6 @@ internal static class ClassUI
 
         TextMeshProUGUI tmp = go.AddComponent<TextMeshProUGUI>();
 
-        // On récupère les mêmes réglages que le texte principal
         tmp.font = classText.font;
         tmp.fontSharedMaterial = classText.fontSharedMaterial;
         tmp.alignment = TextAlignmentOptions.Center;

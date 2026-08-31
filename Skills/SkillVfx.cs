@@ -11,11 +11,11 @@ internal static class SkillVfx
 
     private static readonly Dictionary<PlayerClass, Color> LightColors = new Dictionary<PlayerClass, Color>
     {
-        { PlayerClass.Warrior, new Color(0.9f, 0.1f, 0.1f) },     // rouge
-        { PlayerClass.Paladin, new Color(0.1f, 0.2f, 0.9f) },     // bleu
-        { PlayerClass.Scout, new Color(0.9f, 0.9f, 0.1f) },       // jaune
-        { PlayerClass.Druid, new Color(0.25f, 0.85f, 0.25f) },    // vert
-        { PlayerClass.Mage, new Color(0.6f, 0.1f, 0.9f) },        // violet
+        { PlayerClass.Warrior, new Color(0.9f, 0.1f, 0.1f) },
+        { PlayerClass.Paladin, new Color(0.1f, 0.2f, 0.9f) },
+        { PlayerClass.Scout, new Color(0.9f, 0.9f, 0.1f) },
+        { PlayerClass.Druid, new Color(0.25f, 0.85f, 0.25f) },
+        { PlayerClass.Mage, new Color(0.6f, 0.1f, 0.9f) },
     };
 
     public static void PlayCastEffect(PlayerAvatar caster, PlayerClass playerClass, float duration)
@@ -92,15 +92,6 @@ internal static class SkillVfx
             Object.Destroy(effect.gameObject);
     }
 
-    // When a player dies, their PlayerAvatar GameObject gets fully
-    // deactivated (SetActive(false)) by the game. Since PlayCastEffect's
-    // cast VFX is parented to that same transform and cleaned up by a
-    // coroutine hosted on it, deactivating the avatar silently kills that
-    // coroutine mid-way - the particle/light effect never gets stopped or
-    // destroyed. It then sits there (still "playing"/looping) inside the
-    // disabled hierarchy and reappears permanently once the avatar is
-    // reactivated (revive or respawn). Call this right when the player
-    // dies to force-clean any leftover cast VFX immediately.
     public static void ClearActiveEffects(PlayerAvatar avatar)
     {
         if (avatar == null)
@@ -117,12 +108,6 @@ internal static class SkillVfx
         Object.Destroy(existing.gameObject);
     }
 
-    // Bigger, world-anchored "explosion" style burst for AoE impact skills
-    // (e.g. Monk's Shockwave), as opposed to PlayCastEffect's small burst
-    // that follows the caster. Not parented to anyone since it represents
-    // a one-shot blast at a fixed point, plus a real camera shake (same
-    // public API the game's own ItemShockwave/explosive grenades use) for
-    // extra impact.
     public static void PlayShockwaveEffect(Vector3 position, PlayerClass playerClass, float radius, float duration = 1.2f)
     {
         GameObject template = AssetManager.instance != null ? AssetManager.instance.prefabTeleportEffect : null;

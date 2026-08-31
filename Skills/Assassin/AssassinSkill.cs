@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 internal class AssassinSkill : Skill
@@ -16,12 +17,26 @@ internal class AssassinSkill : Skill
 
     public override bool Execute()
     {
-        PlayerAvatar.instance.EnemyVisionFreezeTimerSet(Duration);
+        PlayerAvatar caster = PlayerAvatar.instance;
+
+        FreezeEnemyVision(caster);
 
         PlayerController.instance.AntiGravity(Duration);
 
         Plugin.Log.LogInfo("Assassin skill used.");
 
         return true;
+    }
+
+    private void FreezeEnemyVision(PlayerAvatar caster)
+    {
+        if (!SemiFunc.IsMultiplayer())
+        {
+            caster.EnemyVisionFreezeTimerSet(Duration);
+        }
+        else
+        {
+            caster.photonView.RPC(nameof(NecromancerReviveRelay.SetVisionFreezeRPC), RpcTarget.MasterClient, Duration);
+        }
     }
 }

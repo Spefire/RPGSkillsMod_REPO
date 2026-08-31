@@ -13,6 +13,36 @@ internal class EnemyMapReveal : MonoBehaviour
     private Coroutine activeCoroutine;
 
     [PunRPC]
+    public void SetChaseTargetRPC(int casterViewId)
+    {
+        PhotonView casterView = PhotonView.Find(casterViewId);
+        PlayerAvatar caster = casterView != null ? casterView.GetComponent<PlayerAvatar>() : null;
+        Enemy enemy = GetComponentInChildren<Enemy>();
+
+        if (caster != null && enemy != null)
+            enemy.SetChaseTarget(caster);
+    }
+
+    [PunRPC]
+    public void StunAndPushRPC(Vector3 casterPosition, float stunDuration, float explosionForce, float radius, float upwardsModifier)
+    {
+        Enemy enemy = GetComponentInChildren<Enemy>();
+
+        if (enemy == null)
+            return;
+
+        EnemyStateStunned stunned = enemy.GetComponent<EnemyStateStunned>();
+
+        if (stunned != null)
+            stunned.Set(stunDuration);
+
+        Rigidbody rb = enemy.GetComponent<Rigidbody>();
+
+        if (rb != null)
+            rb.AddExplosionForce(explosionForce, casterPosition, radius, upwardsModifier, ForceMode.Impulse);
+    }
+
+    [PunRPC]
     public void RevealRPC(float duration)
     {
         Enemy enemy = GetComponentInChildren<Enemy>();

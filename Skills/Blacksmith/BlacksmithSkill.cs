@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 internal class BlacksmithSkill : Skill
@@ -36,7 +37,14 @@ internal class BlacksmithSkill : Skill
         if (heldObject == null)
             return false;
 
-        heldObject.OverrideIndestructible(IndestructibleDuration);
+        if (!SemiFunc.IsMultiplayer())
+        {
+            heldObject.OverrideIndestructible(IndestructibleDuration);
+        }
+        else
+        {
+            heldObject.GetComponent<PhotonView>().RPC(nameof(PhysGrabObjectRelay.OverrideIndestructibleRPC), RpcTarget.MasterClient, IndestructibleDuration);
+        }
 
         return true;
     }

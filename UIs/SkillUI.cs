@@ -81,7 +81,6 @@ internal static class SkillUI
 
     private static void CreateUI()
     {
-        // Crée les conteneurs principaux
         skillUI = UnityEngine.Object.Instantiate(
             EnergyUI.instance.gameObject,
             EnergyUI.instance.transform.parent);
@@ -95,18 +94,9 @@ internal static class SkillUI
         UnityEngine.Object.Destroy(skillUI.GetComponent<EnergyUI>());
         UnityEngine.Object.Destroy(skillUI2.GetComponent<EnergyUI>());
 
-        // Supprime TOUS les anciens enfants de l'UI Energy clonée (on
-        // reconstruit tout nous-mêmes avec CreateText juste après). L'ancien
-        // code ne détruisait que 3 enfants connus par leur nom ("EnergyMax",
-        // "Zap", "Scanlines"), ce qui laissait passer d'éventuels autres
-        // enfants du prefab EnergyUI d'origine (ex: un objet "Description"
-        // avec un TMP_SpriteAnimator repéré dans l'inspecteur runtime) qui
-        // entrait alors en collision de nom avec notre propre "Description"
-        // créé plus bas.
         DestroyAllChildren(skillUI);
         DestroyAllChildren(skillUI2);
 
-        // Configure le texte principal
         skillText = skillUI.GetComponent<TextMeshProUGUI>();
         skillText.fontSize = 28;
         skillText.color = Color.yellow;
@@ -129,7 +119,6 @@ internal static class SkillUI
         rect2.anchoredPosition = new Vector2(0, 20);
         rect2.sizeDelta = new Vector2(260, 160);
 
-        // Ajoute les nouveaux éléments
         lobbyDescription = CreateText(skillUI.transform, "Description", "", new Vector2(0, -85), 18, Color.white);
         lobbyProperties = CreateText(skillUI.transform, "Properties", "", new Vector2(0, -110), 12, Color.green);
 
@@ -226,7 +215,6 @@ internal static class SkillUI
 
         TextMeshProUGUI tmp = go.AddComponent<TextMeshProUGUI>();
 
-        // On récupère les mêmes réglages que le texte principal
         tmp.font = skillText.font;
         tmp.fontSharedMaterial = skillText.fontSharedMaterial;
 

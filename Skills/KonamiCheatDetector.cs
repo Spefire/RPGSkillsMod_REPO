@@ -2,12 +2,6 @@ using HarmonyLib;
 using Photon.Pun;
 using UnityEngine;
 
-// Detects the classic Konami code (Up Up Down Down Left Right Left Right
-// B A) at any time during a run and toggles KonamiCheatRelay.
-// FreeClassChangeUnlocked network-wide. Entering the code again toggles it
-// back off. Follows the same "separate HarmonyPatch class on
-// RunManager.Update" pattern already used independently by ClassUI and
-// SkillPatch.
 [HarmonyPatch(typeof(RunManager), "Update")]
 internal static class KonamiCheatDetector
 {
@@ -20,8 +14,6 @@ internal static class KonamiCheatDetector
         KeyCode.B, KeyCode.A
     };
 
-    // Only the distinct keys involved in the sequence - used to detect a
-    // "wrong key" press without scanning every possible KeyCode.
     private static readonly KeyCode[] RelevantKeys =
     {
         KeyCode.UpArrow, KeyCode.DownArrow,
@@ -55,8 +47,6 @@ internal static class KonamiCheatDetector
         {
             if (Input.GetKeyDown(key))
             {
-                // Wrong key: restart the sequence, letting this press count
-                // as a fresh start if it happens to match the first key.
                 progress = (key == Sequence[0]) ? 1 : 0;
                 return;
             }

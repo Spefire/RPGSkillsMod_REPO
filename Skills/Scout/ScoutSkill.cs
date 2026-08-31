@@ -19,11 +19,8 @@ internal class ScoutSkill : Skill
 
     public override bool Execute()
     {
-        if (active)
+        if (!ActivateInfiniteStamina())
             return false;
-
-        active = true;
-        timer = Duration;
 
         Plugin.Log.LogInfo("Scout skill activated.");
 
@@ -40,10 +37,24 @@ internal class ScoutSkill : Skill
         timer -= Time.deltaTime;
 
         if (timer <= 0f)
-        {
-            active = false;
+            DeactivateInfiniteStamina();
+    }
 
-            Plugin.Log.LogInfo("Scout skill ended.");
-        }
+    private bool ActivateInfiniteStamina()
+    {
+        if (active)
+            return false;
+
+        active = true;
+        timer = Duration;
+
+        return true;
+    }
+
+    private void DeactivateInfiniteStamina()
+    {
+        active = false;
+
+        Plugin.Log.LogInfo("Scout skill ended.");
     }
 }

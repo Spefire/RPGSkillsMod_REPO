@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 internal class MonkSkill : Skill
@@ -48,28 +49,25 @@ internal class MonkSkill : Skill
             if (distance > Radius)
                 continue;
 
-            // EnemyStateStunned.Set(...) is what drives Enemy.CurrentState
-            // to EnemyState.Stunned (confirmed public via ilspycmd, same
-            // mechanism the game uses for fall-stun). While stunned, the
-            // enemy's NavMeshAgent stops overriding its position every
-            // frame, so the physics push below actually moves it instead
-            // of being cancelled out immediately.
-            EnemyStateStunned stunned = enemy.GetComponent<EnemyStateStunned>();
+            if (!SemiFunc.IsMultiplayer())
+            {
+                EnemyStateStunned stunned = enemy.GetComponent<EnemyStateStunned>();
 
-            if (stunned != null)
-                stunned.Set(StunDuration);
+                if (stunned != null)
+                    stunned.Set(StunDuration);
 
-            Rigidbody rb = enemy.GetComponent<Rigidbody>();
+                Rigidbody rb = enemy.GetComponent<Rigidbody>();
 
-            if (rb == null)
-                continue;
-
-            // AddExplosionForce gives a natural distance falloff (strong up
-            // close, weaker near the edge of the radius) instead of the
-            // previous flat push, which reads as a much more powerful
-            // "shockwave" impact - same built-in Unity API real explosions
-            // (e.g. grenades) commonly rely on.
-            rb.AddExplosionForce(ExplosionForce, caster.transform.position, Radius, UpwardsModifier, ForceMode.Impulse);
+                if (rb != null)
+                {
+                    rb.AddExplosionForce(ExplosionForce, caster.transform.position, Radius, UpwardsModifier, ForceMode.Impulse);
+                }
+            }
+            else
+            {
+                PhotonView photonView = enemy.GetComponentInParent<EnemyParent>().GetComponent<PhotonView>();
+                photonView.RPC(nameof(EnemyMapReveal.StunAndPushRPC), RpcTarget.MasterClient, caster.transform.position, StunDuration, ExplosionForce, Radius, UpwardsModifier);
+            }
         }
     }
 }

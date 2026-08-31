@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 internal class PaladinSkill : Skill
@@ -18,9 +19,6 @@ internal class PaladinSkill : Skill
 
     public override bool Execute()
     {
-        // PlayerHealth.InvincibleSet(float) directly manages its own
-        // internal invincibility timer, so there's no need to track
-        // active/timer state or manually revert anything here.
         PlayerAvatar.instance.playerHealth.InvincibleSet(Duration);
 
         TauntNearbyEnemies();
@@ -43,8 +41,15 @@ internal class PaladinSkill : Skill
             if (distance > Radius)
                 continue;
 
-            // Forces this enemy to chase/target the caster.
-            enemy.SetChaseTarget(caster);
+            if (!SemiFunc.IsMultiplayer())
+            {
+                enemy.SetChaseTarget(caster);
+            }
+            else
+            {
+                PhotonView photonView = enemy.GetComponentInParent<EnemyParent>().GetComponent<PhotonView>();
+                photonView.RPC(nameof(EnemyMapReveal.SetChaseTargetRPC), RpcTarget.MasterClient, caster.photonView.ViewID);
+            }
         }
     }
 }
