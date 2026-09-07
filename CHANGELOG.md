@@ -6,6 +6,21 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ---
 
+## [1.1.0] - Multiplayer reliability pass
+
+### Added
+
+* Added a **Toggle Skill UI** key (`H` by default, configurable via `ToggleSkillUIKey`) to show or hide the skill HUD (name, description, properties, cooldown) on demand, for players who find it too intrusive.
+* Added a hidden Konami code easter egg (`↑ ↑ ↓ ↓ ← → ← → B A`) that toggles free in-run class changes for everyone, synced across all players.
+
+### Fixed
+
+* Fixed several skills silently doing nothing when used by a non-host player in multiplayer, since the underlying game calls they relied on only take effect when triggered by the master client: Mage's *Phantom* invisibility, *Reinforce* indestructibility, Paladin's *Divine Taunt* enemy targeting, and *Shockwave* stun/knockback are now relayed to the host so they work for every player.
+* Fixed Druid's self-revive (*Raise Dead*) sometimes reviving the player high up near the truck instead of at their actual death location.
+* Fixed the host occasionally losing their saved class when loading a multiplayer save; class data now lives in its own save file instead of sharing one the game frequently rewrites (existing saves are migrated automatically).
+
+---
+
 ## [0.6.0] - Reconsolidation: 2 skills per class
 
 ### Changed
