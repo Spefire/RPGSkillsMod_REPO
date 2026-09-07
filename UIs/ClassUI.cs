@@ -30,9 +30,9 @@ internal static class ClassUI
         if (classUI == null)
             CreateUI();
 
-        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop()
-            || (Plugin.DebugAllow && SemiFunc.RunIsLevel())
-            || (KonamiCheatRelay.FreeClassChangeUnlocked && SemiFunc.RunIsLevel()))
+        bool isAdmin = (Plugin.DebugAllow || KonamiCheatRelay.FreeClassChangeUnlocked);
+
+        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop() || (isAdmin && SemiFunc.RunIsLevel()))
         {
             if (Input.GetKeyDown(Plugin.PreviousClassKey.Value))
             {
@@ -47,7 +47,7 @@ internal static class ClassUI
             }
         }
 
-        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop())
+        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop() || isAdmin)
         {
             classUI.SetActive(true);
             leftArrow.gameObject.SetActive(true);
