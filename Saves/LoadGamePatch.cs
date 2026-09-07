@@ -14,7 +14,7 @@ internal static class LoadGamePatch
             Application.persistentDataPath,
             "saves",
             fileName,
-            fileName + ".es3");
+            fileName + "_rpgSkillsMod.es3");
 
         ES3Settings settings = new ES3Settings(
             path,
@@ -23,6 +23,33 @@ internal static class LoadGamePatch
 
         if (!ES3.KeyExists("selectedClass", settings))
         {
+            string legacyPath = Path.Combine(
+                Application.persistentDataPath,
+                "saves",
+                fileName,
+                fileName + ".es3");
+
+            ES3Settings legacySettings = new ES3Settings(
+                legacyPath,
+                ES3.EncryptionType.AES,
+                Plugin.totallyNormalString);
+
+            if (ES3.KeyExists("selectedClass", legacySettings))
+            {
+                string legacyClassName = ES3.Load<string>("selectedClass", legacySettings);
+
+                if (Enum.TryParse(legacyClassName, out PlayerClass legacyPlayerClass))
+                {
+                    Plugin.SelectedClass = legacyPlayerClass;
+
+                    ES3.Save("selectedClass", legacyClassName, settings);
+
+                    Plugin.Log.LogInfo($"Migrated legacy saved class: {legacyPlayerClass}");
+
+                    return;
+                }
+            }
+
             Plugin.SelectedClass = PlayerClass.None;
 
             Plugin.Log.LogInfo("No saved class found.");

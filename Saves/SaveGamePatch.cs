@@ -15,7 +15,7 @@ internal static class SaveGamePatch
             Application.persistentDataPath,
             "saves",
             fileName,
-            fileName + ".es3");
+            fileName + "_rpgSkillsMod.es3");
 
         ES3Settings settings = new ES3Settings(
             path,
