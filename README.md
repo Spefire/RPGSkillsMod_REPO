@@ -33,6 +33,7 @@ Full effect descriptions, cooldowns, radius and durations for every skill are on
 - `G`  -> Use secondary skill
 - `F6` -> Previous class
 - `F8` -> Next class
+- `H`  -> Show/hide the skill UI
 
 These keybinds, as well as enabling/disabling the mod, can be changed in the BepInEx configuration file.
 

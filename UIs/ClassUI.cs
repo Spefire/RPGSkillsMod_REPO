@@ -11,6 +11,8 @@ internal static class ClassUI
 {
     public static GameObject classUI;
     private static TextMeshProUGUI classText;
+    private static TextMeshProUGUI helpIcon;
+    private static TextMeshProUGUI helpKey;
     private static TextMeshProUGUI leftArrow;
     private static TextMeshProUGUI rightArrow;
     private static TextMeshProUGUI leftKey;
@@ -50,6 +52,8 @@ internal static class ClassUI
         if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop() || isAdmin)
         {
             classUI.SetActive(true);
+            helpIcon.gameObject.SetActive(true);
+            helpKey.gameObject.SetActive(true);
             leftArrow.gameObject.SetActive(true);
             rightArrow.gameObject.SetActive(true);
             leftKey.gameObject.SetActive(true);
@@ -58,6 +62,8 @@ internal static class ClassUI
         else if (SemiFunc.RunIsLevel())
         {
             classUI.SetActive(true);
+            helpIcon.gameObject.SetActive(true);
+            helpKey.gameObject.SetActive(true);
             leftArrow.gameObject.SetActive(false);
             rightArrow.gameObject.SetActive(false);
             leftKey.gameObject.SetActive(false);
@@ -92,11 +98,13 @@ internal static class ClassUI
         rect.sizeDelta = new Vector2(260, 30);
         rect.anchoredPosition = new Vector2(0, -62);
 
-        leftArrow = CreateText("LeftArrow", "◀", new Vector2(-120, -25), 24, Color.yellow);
-        rightArrow = CreateText("RightArrow", "▶", new Vector2(-90, -25), 24, Color.yellow);
+        helpIcon = CreateText("HelpIcon", "◩", new Vector2(-120, -25), 24, Color.yellow);
+        leftArrow = CreateText("LeftArrow", "◀", new Vector2(-90, -25), 24, Color.yellow);
+        rightArrow = CreateText("RightArrow", "▶", new Vector2(-60, -25), 24, Color.yellow);
 
-        leftKey = CreateText("LeftKey", Plugin.PreviousClassKey.Value.ToString(), new Vector2(-120, -50), 18, Color.grey);
-        rightKey = CreateText("RightKey", Plugin.NextClassKey.Value.ToString(), new Vector2(-90, -50), 18, Color.grey);
+        helpKey = CreateText("HelpKey", Plugin.ToggleSkillUIKey.Value.ToString(), new Vector2(-120, -50), 18, Color.grey);
+        leftKey = CreateText("LeftKey", Plugin.PreviousClassKey.Value.ToString(), new Vector2(-90, -50), 18, Color.grey);
+        rightKey = CreateText("RightKey", Plugin.NextClassKey.Value.ToString(), new Vector2(-60, -50), 18, Color.grey);
 
         Refresh();
     }

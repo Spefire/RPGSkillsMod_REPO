@@ -17,6 +17,7 @@ public class Plugin : BaseUnityPlugin
     public static ConfigEntry<KeyCode> NextClassKey;
     public static ConfigEntry<KeyCode> SkillKey;
     public static ConfigEntry<KeyCode> SkillKey2;
+    public static ConfigEntry<KeyCode> ToggleSkillUIKey;
 
     internal static ManualLogSource Log;
 
@@ -60,6 +61,13 @@ public class Plugin : BaseUnityPlugin
             "SkillKey2",
             KeyCode.G,
             "Key used to activate the secondary skill."
+        );
+
+        ToggleSkillUIKey = Config.Bind(
+            "Controls",
+            "ToggleSkillUIKey",
+            KeyCode.H,
+            "Key used to show or hide the skill UI."
         );
 
         Log.LogInfo($"{ModName} loaded...");

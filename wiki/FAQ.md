@@ -18,6 +18,13 @@ be holding an item, Raise Dead requires being downed or holding a dead
 ally's severed head). Check the in-game chat/log for a message explaining
 why the skill failed.
 
+### The skill HUD is too big/intrusive, can I hide it?
+
+Yes, press `H` (default, configurable via `ToggleSkillUIKey`) to show or
+hide the skill panels (name, description, properties, cooldown) at any
+time. Hiding the HUD is purely visual and doesn't affect cooldowns or
+skill usage.
+
 ### Can I disable the mod without uninstalling it?
 
 Yes, set `EnableMod` to `false` in the config file (see

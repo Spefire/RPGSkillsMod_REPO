@@ -21,6 +21,8 @@ internal static class SkillUI
     private static TextMeshProUGUI levelCooldown2;
     private static TextMeshProUGUI levelKey2;
 
+    private static bool visible = true;
+
     private static void Postfix()
     {
         if (!Plugin.EnableMod.Value)
@@ -35,7 +37,10 @@ internal static class SkillUI
         if (skillUI == null && skillUI2 == null)
             CreateUI();
 
-        if (Plugin.SelectedClass == PlayerClass.None)
+        if (Input.GetKeyDown(Plugin.ToggleSkillUIKey.Value))
+            visible = !visible;
+
+        if (!visible || Plugin.SelectedClass == PlayerClass.None)
         {
             skillUI.SetActive(false);
             skillUI2.SetActive(false);
