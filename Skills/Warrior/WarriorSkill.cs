@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 internal class WarriorSkill : Skill
 {

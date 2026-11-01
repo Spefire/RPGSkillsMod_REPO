@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using UnityEngine;
 
 [HarmonyPatch(typeof(RunManager), "Update")]
@@ -10,6 +10,7 @@ internal static class SkillPatch
         {
             SkillManager.CancelAll();
             return;
+        }
 
         ModNetwork.Announce();
 
@@ -17,6 +18,7 @@ internal static class SkillPatch
         {
             SkillManager.CancelAll();
             return;
+        }
 
         if (SemiFunc.RunIsLevel())
         {

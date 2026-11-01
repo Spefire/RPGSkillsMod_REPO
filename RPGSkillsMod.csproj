@@ -112,7 +112,7 @@
     <Compile Include="Skills\Scout\ScoutSkill.cs" />
     <Compile Include="Skills\TreasureHunter\TreasureHunterSkill.cs" />
     <Compile Include="Skills\Warrior\WarriorSkill.cs" />
-    <Compile Include="Skills\SkillPatch.cs" />
+    <Compile Include="Skills\SkillController.cs" />
     <Compile Include="Skills\SkillManager.cs" />
     <Compile Include="Skills\SkillVfx.cs" />
     <Compile Include="Skills\SkillVfxDeathPatch.cs" />

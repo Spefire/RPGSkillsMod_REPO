@@ -6,6 +6,28 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ---
 
+## [2.0.0] - Robustness pass
+
+### Added
+
+* Added a local save file for the class chosen as a client: joining a game no longer loses your class, since only the host's save used to store it.
+* Added a check that the host has the mod before sending it a skill request. Skills that need the host are now refused (without consuming their cooldown) with an explanatory message instead of failing silently.
+
+### Changed
+
+* Bumped the version to 2.0.0 everywhere (plugin, package manifest, assembly and README badge).
+* The build no longer depends on a hard-coded relative path: the game folder can be set with the `GamePath` MSBuild property, the `REPO_PATH` environment variable or a git-ignored `RPGSkillsMod.local.props` file.
+
+### Fixed
+
+* Fixed *Berserk* and *Best Runner* sometimes staying active forever (and *Berserk*'s strength bonus being saved) when the level ended, the class was changed or the game was saved while they were running.
+* Fixed skill, class and UI hotkeys (and the Konami code) triggering while typing in the chat.
+* Fixed the Konami code RPC being accepted from a player other than the avatar's owner.
+* Fixed *Raise Dead* costing health when the host couldn't relay the revival.
+* Fixed a memory leak where the death positions kept for revivals were never released.
+
+---
+
 ## [1.1.0] - Multiplayer reliability pass
 
 ### Added

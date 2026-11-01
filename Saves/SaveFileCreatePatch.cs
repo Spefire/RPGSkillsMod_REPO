@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 
 [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.SaveFileCreate))]
 internal static class SaveFileCreatePatch

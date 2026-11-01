@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;

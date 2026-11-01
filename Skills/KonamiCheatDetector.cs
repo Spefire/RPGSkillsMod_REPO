@@ -82,10 +82,8 @@ internal static class KonamiCheatDetector
 
         if (SemiFunc.IsMultiplayer() && local != null && local.photonView != null)
         {
-            KonamiCheatRelay relay = local.GetComponent<KonamiCheatRelay>();
-
-            if (relay == null)
-                relay = local.gameObject.AddComponent<KonamiCheatRelay>();
+            if (local.GetComponent<KonamiCheatRelay>() == null)
+                local.gameObject.AddComponent<KonamiCheatRelay>();
 
             ModNetwork.RpcToModdedPlayers(local.photonView, nameof(KonamiCheatRelay.SetFreeClassChangeRPC), newState);
         }
