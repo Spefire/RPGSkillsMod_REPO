@@ -3,7 +3,7 @@
 Adds RPG classes to R.E.P.O., each with unique active skills.
 
 ![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue)
+![Version](https://img.shields.io/badge/Version-2.0.0-blue)
 
 > This plugin has completed its testing phase and is now stable.
 

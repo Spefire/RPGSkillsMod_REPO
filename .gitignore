@@ -1,6 +1,6 @@
 .vs/
 bin/
 obj/
-Properties/AssemblyInfo.cs
+RPGSkillsMod.local.props
 ref/
 *.zip
