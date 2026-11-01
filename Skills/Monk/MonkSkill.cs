@@ -23,7 +23,8 @@ internal class MonkSkill : Skill
     {
         PlayerAvatar caster = PlayerAvatar.instance;
 
-        PushBackNearbyEnemies(caster);
+        if (!PushBackNearbyEnemies(caster))
+            return false;
 
         try
         {
@@ -39,7 +40,7 @@ internal class MonkSkill : Skill
         return true;
     }
 
-    private void PushBackNearbyEnemies(PlayerAvatar caster)
+    private bool PushBackNearbyEnemies(PlayerAvatar caster)
     {
         foreach (Enemy enemy in Object.FindObjectsOfType<Enemy>())
         {
@@ -66,8 +67,12 @@ internal class MonkSkill : Skill
             else
             {
                 PhotonView photonView = enemy.GetComponentInParent<EnemyParent>().GetComponent<PhotonView>();
-                photonView.RPC(nameof(EnemyMapReveal.StunAndPushRPC), RpcTarget.MasterClient, caster.transform.position, StunDuration, ExplosionForce, Radius, UpwardsModifier);
+
+                if (!ModNetwork.TryRpcToMaster(photonView, nameof(EnemyMapReveal.StunAndPushRPC), caster.transform.position, StunDuration, ExplosionForce, Radius, UpwardsModifier))
+                    return false;
             }
         }
+
+        return true;
     }
 }

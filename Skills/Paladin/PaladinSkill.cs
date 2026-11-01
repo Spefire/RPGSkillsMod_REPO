@@ -19,16 +19,17 @@ internal class PaladinSkill : Skill
 
     public override bool Execute()
     {
-        PlayerAvatar.instance.playerHealth.InvincibleSet(Duration);
+        if (!TauntNearbyEnemies())
+            return false;
 
-        TauntNearbyEnemies();
+        PlayerAvatar.instance.playerHealth.InvincibleSet(Duration);
 
         Plugin.Log.LogInfo("Paladin skill used.");
 
         return true;
     }
 
-    private void TauntNearbyEnemies()
+    private bool TauntNearbyEnemies()
     {
         PlayerAvatar caster = PlayerAvatar.instance;
 
@@ -48,8 +49,12 @@ internal class PaladinSkill : Skill
             else
             {
                 PhotonView photonView = enemy.GetComponentInParent<EnemyParent>().GetComponent<PhotonView>();
-                photonView.RPC(nameof(EnemyMapReveal.SetChaseTargetRPC), RpcTarget.MasterClient, caster.photonView.ViewID);
+
+                if (!ModNetwork.TryRpcToMaster(photonView, nameof(EnemyMapReveal.SetChaseTargetRPC), caster.photonView.ViewID))
+                    return false;
             }
         }
+
+        return true;
     }
 }

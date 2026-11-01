@@ -19,7 +19,8 @@ internal class AssassinSkill : Skill
     {
         PlayerAvatar caster = PlayerAvatar.instance;
 
-        FreezeEnemyVision(caster);
+        if (!FreezeEnemyVision(caster))
+            return false;
 
         PlayerController.instance.AntiGravity(Duration);
 
@@ -28,15 +29,14 @@ internal class AssassinSkill : Skill
         return true;
     }
 
-    private void FreezeEnemyVision(PlayerAvatar caster)
+    private bool FreezeEnemyVision(PlayerAvatar caster)
     {
         if (!SemiFunc.IsMultiplayer())
         {
             caster.EnemyVisionFreezeTimerSet(Duration);
+            return true;
         }
-        else
-        {
-            caster.photonView.RPC(nameof(NecromancerReviveRelay.SetVisionFreezeRPC), RpcTarget.MasterClient, Duration);
-        }
+
+        return ModNetwork.TryRpcToMaster(caster.photonView, nameof(NecromancerReviveRelay.SetVisionFreezeRPC), Duration);
     }
 }

@@ -81,7 +81,7 @@ internal static class KonamiCheatDetector
             if (relay == null)
                 relay = local.gameObject.AddComponent<KonamiCheatRelay>();
 
-            local.photonView.RPC(nameof(KonamiCheatRelay.SetFreeClassChangeRPC), RpcTarget.All, newState);
+            ModNetwork.RpcToModdedPlayers(local.photonView, nameof(KonamiCheatRelay.SetFreeClassChangeRPC), newState);
         }
         else
         {

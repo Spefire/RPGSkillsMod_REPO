@@ -16,7 +16,7 @@ internal class BlacksmithSkill : Skill
     {
         if (!ReinforceHeldItem())
         {
-            Plugin.Log.LogInfo("Blacksmith skill failed: no item held.");
+            Plugin.Log.LogInfo("Blacksmith skill failed: no item held, or the host can't relay it.");
             return false;
         }
 
@@ -40,12 +40,9 @@ internal class BlacksmithSkill : Skill
         if (!SemiFunc.IsMultiplayer())
         {
             heldObject.OverrideIndestructible(IndestructibleDuration);
-        }
-        else
-        {
-            heldObject.GetComponent<PhotonView>().RPC(nameof(PhysGrabObjectRelay.OverrideIndestructibleRPC), RpcTarget.MasterClient, IndestructibleDuration);
+            return true;
         }
 
-        return true;
+        return ModNetwork.TryRpcToMaster(heldObject.GetComponent<PhotonView>(), nameof(PhysGrabObjectRelay.OverrideIndestructibleRPC), IndestructibleDuration);
     }
 }

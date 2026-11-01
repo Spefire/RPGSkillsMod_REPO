@@ -39,8 +39,10 @@ Yes, set `EnableMod` to `false` in the config file (see
 
 ### Is this mod multiplayer-safe?
 
-Yes, class selection is saved per save file and skills are designed to
-work in multiplayer sessions.
+Skills are designed to work in multiplayer sessions, but some of them rely on
+the host, so **the host must have the mod installed**. If the host doesn't, the
+affected skills are refused (without consuming their cooldown) and a message
+explains why.
 
 ### I found a bug, where do I report it?
 

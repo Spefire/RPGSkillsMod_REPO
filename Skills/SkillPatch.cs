@@ -9,6 +9,8 @@ internal static class SkillPatch
         if (!Plugin.EnableMod.Value)
             return;
 
+        ModNetwork.Announce();
+
         if (LevelGenerator.Instance == null)
             return;
 

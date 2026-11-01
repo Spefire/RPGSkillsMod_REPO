@@ -64,7 +64,7 @@ internal class RangerSkill : Skill
         }
         else
         {
-            enemyParent.GetComponent<PhotonView>().RPC(nameof(EnemyMapReveal.RevealRPC), RpcTarget.All, Duration);
+            ModNetwork.RpcToModdedPlayers(enemyParent.GetComponent<PhotonView>(), nameof(EnemyMapReveal.RevealRPC), Duration);
         }
     }
 }

@@ -35,6 +35,9 @@ internal class NecromancerSkill : Skill
         if (target == null)
             return false;
 
+        if (SemiFunc.IsMultiplayer() && !ModNetwork.EnsureHostHasMod())
+            return false;
+
         caster.playerHealth.Hurt(HealthSacrifice, false, -1, false);
 
         ReviveTarget(target);
@@ -47,11 +50,10 @@ internal class NecromancerSkill : Skill
         if (!SemiFunc.IsMultiplayer())
         {
             NecromancerReviveRelay.ReviveWithCorrectPosition(target, false);
+            return;
         }
-        else
-        {
-            target.photonView.RPC(nameof(NecromancerReviveRelay.RequestReviveRPC), RpcTarget.MasterClient, false);
-        }
+
+        ModNetwork.TryRpcToMaster(target.photonView, nameof(NecromancerReviveRelay.RequestReviveRPC), false);
     }
 
     private PlayerAvatar FindReviveTarget(PlayerAvatar caster)
