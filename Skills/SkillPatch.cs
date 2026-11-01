@@ -39,6 +39,7 @@ internal static class SkillPatch
         {
             SkillManager.CancelAll();
             SkillManager.ResetCooldown();
+            NecromancerReviveRelay.ClearDeathPositions();
         }
     }
 }

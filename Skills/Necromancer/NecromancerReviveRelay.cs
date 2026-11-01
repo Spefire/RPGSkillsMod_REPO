@@ -39,5 +39,28 @@ internal class NecromancerReviveRelay : MonoBehaviour
         }
 
         target.Revive(revivedByTruck);
+
+        LastDeathPosition.Remove(target);
+    }
+
+    internal static void RememberDeathPosition(PlayerAvatar avatar)
+    {
+        List<PlayerAvatar> destroyed = new List<PlayerAvatar>();
+
+        foreach (PlayerAvatar known in LastDeathPosition.Keys)
+        {
+            if (known == null)
+                destroyed.Add(known);
+        }
+
+        foreach (PlayerAvatar known in destroyed)
+            LastDeathPosition.Remove(known);
+
+        LastDeathPosition[avatar] = avatar.transform.position;
+    }
+
+    internal static void ClearDeathPositions()
+    {
+        LastDeathPosition.Clear();
     }
 }

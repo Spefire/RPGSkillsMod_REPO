@@ -16,6 +16,6 @@ internal static class NecromancerDeathPositionPatch
     [HarmonyPrefix]
     private static void Prefix(PlayerAvatar __instance)
     {
-        NecromancerReviveRelay.LastDeathPosition[__instance] = __instance.transform.position;
+        NecromancerReviveRelay.RememberDeathPosition(__instance);
     }
 }
