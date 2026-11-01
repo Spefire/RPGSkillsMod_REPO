@@ -5,6 +5,12 @@ using System.IO;
 [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.SaveGame))]
 internal static class SaveGamePatch
 {
+    [HarmonyPrefix]
+    private static void CancelSkillsBeforeSave()
+    {
+        SkillManager.CancelAll();
+    }
+
     [HarmonyPostfix]
     private static void SaveClass(string fileName)
     {

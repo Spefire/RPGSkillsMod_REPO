@@ -146,6 +146,8 @@ internal static class ClassUI
 
     private static void PreviousClass()
     {
+        SkillManager.CancelAll();
+
         int count = Enum.GetValues(typeof(PlayerClass)).Length;
 
         Plugin.SelectedClass =
@@ -154,6 +156,8 @@ internal static class ClassUI
 
     private static void NextClass()
     {
+        SkillManager.CancelAll();
+
         int count = Enum.GetValues(typeof(PlayerClass)).Length;
 
         Plugin.SelectedClass =

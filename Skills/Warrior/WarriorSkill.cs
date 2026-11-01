@@ -4,6 +4,7 @@ internal class WarriorSkill : Skill
 {
     private bool active;
     private float timer;
+    private string grantedSteamId;
 
     private const int StrengthLevels = 20;
     private const float Duration = 15f;
@@ -47,23 +48,35 @@ internal class WarriorSkill : Skill
 
         active = true;
         timer = Duration;
+        grantedSteamId = SemiFunc.PlayerGetSteamID(PlayerAvatar.instance);
 
-        string steamID = SemiFunc.PlayerGetSteamID(PlayerAvatar.instance);
-
-        PunManager.instance.UpgradePlayerGrabStrength(steamID, StrengthLevels);
-        PunManager.instance.UpgradePlayerThrowStrength(steamID, StrengthLevels);
+        PunManager.instance.UpgradePlayerGrabStrength(grantedSteamId, StrengthLevels);
+        PunManager.instance.UpgradePlayerThrowStrength(grantedSteamId, StrengthLevels);
 
         return true;
+    }
+
+    public override void Cancel()
+    {
+        if (active)
+            DeactivateBerserk();
     }
 
     private void DeactivateBerserk()
     {
         active = false;
 
-        string steamID = SemiFunc.PlayerGetSteamID(PlayerAvatar.instance);
+        if (PunManager.instance != null && grantedSteamId != null)
+        {
+            PunManager.instance.UpgradePlayerGrabStrength(grantedSteamId, -StrengthLevels);
+            PunManager.instance.UpgradePlayerThrowStrength(grantedSteamId, -StrengthLevels);
+        }
+        else
+        {
+            Plugin.Log.LogWarning("Warrior skill ended but the strength bonus could not be reverted.");
+        }
 
-        PunManager.instance.UpgradePlayerGrabStrength(steamID, -StrengthLevels);
-        PunManager.instance.UpgradePlayerThrowStrength(steamID, -StrengthLevels);
+        grantedSteamId = null;
 
         Plugin.Log.LogInfo("Warrior skill ended.");
     }

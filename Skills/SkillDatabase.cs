@@ -42,6 +42,15 @@ public static class SkillDatabase
         }
     };
 
+    public static IEnumerable<Skill> All()
+    {
+        foreach (ClassSkills classSkills in Skills.Values)
+        {
+            yield return classSkills.Primary;
+            yield return classSkills.Secondary;
+        }
+    }
+
     public static Skill Get(PlayerClass playerClass, SkillSlot slot)
     {
         ClassSkills classSkills = Skills[playerClass];

@@ -7,14 +7,15 @@ internal static class SkillPatch
     private static void Postfix()
     {
         if (!Plugin.EnableMod.Value)
+        {
+            SkillManager.CancelAll();
             return;
 
         ModNetwork.Announce();
 
-        if (LevelGenerator.Instance == null)
-            return;
-
-        if (!LevelGenerator.Instance.Generated)
+        if (LevelGenerator.Instance == null || !LevelGenerator.Instance.Generated)
+        {
+            SkillManager.CancelAll();
             return;
 
         if (SemiFunc.RunIsLevel())
@@ -33,6 +34,7 @@ internal static class SkillPatch
         }
         else
         {
+            SkillManager.CancelAll();
             SkillManager.ResetCooldown();
         }
     }

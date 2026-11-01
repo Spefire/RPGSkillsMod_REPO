@@ -79,4 +79,19 @@ internal static class SkillManager
         remainingCooldownPrimary = 0f;
         remainingCooldownSecondary = 0f;
     }
+
+    public static void CancelAll()
+    {
+        foreach (Skill skill in SkillDatabase.All())
+        {
+            try
+            {
+                skill.Cancel();
+            }
+            catch (Exception ex)
+            {
+                Plugin.Log.LogWarning($"Failed to cancel skill {skill.Name}: {ex}");
+            }
+        }
+    }
 }

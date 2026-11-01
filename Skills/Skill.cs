@@ -21,4 +21,6 @@ public class Skill
     public virtual bool Execute() { return true; }
 
     public virtual void Update() { }
+
+    public virtual void Cancel() { }
 }

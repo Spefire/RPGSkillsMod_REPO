@@ -40,6 +40,12 @@ internal class ScoutSkill : Skill
             DeactivateInfiniteStamina();
     }
 
+    public override void Cancel()
+    {
+        if (active)
+            DeactivateInfiniteStamina();
+    }
+
     private bool ActivateInfiniteStamina()
     {
         if (active)
