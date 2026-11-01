@@ -36,13 +36,13 @@ internal static class ClassUI
 
         if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop() || (isAdmin && SemiFunc.RunIsLevel()))
         {
-            if (Input.GetKeyDown(Plugin.PreviousClassKey.Value))
+            if (!InputGuard.IsTyping && Input.GetKeyDown(Plugin.PreviousClassKey.Value))
             {
                 PreviousClass();
                 Refresh();
             }
 
-            if (Input.GetKeyDown(Plugin.NextClassKey.Value))
+            if (!InputGuard.IsTyping && Input.GetKeyDown(Plugin.NextClassKey.Value))
             {
                 NextClass();
                 Refresh();

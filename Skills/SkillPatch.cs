@@ -22,6 +22,9 @@ internal static class SkillPatch
         {
             SkillManager.Update();
 
+            if (InputGuard.IsTyping)
+                return;
+
             if (Input.GetKeyDown(Plugin.SkillKey.Value))
             {
                 SkillManager.TryUseSkill(SkillSlot.Primary);

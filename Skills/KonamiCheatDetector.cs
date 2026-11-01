@@ -33,6 +33,12 @@ internal static class KonamiCheatDetector
         if (!Plugin.EnableMod.Value)
             return;
 
+        if (InputGuard.IsTyping)
+        {
+            progress = 0;
+            return;
+        }
+
         KeyCode[] expected = Sequence[progress];
 
         if (IsAnyKeyDown(expected))

@@ -37,7 +37,7 @@ internal static class SkillUI
         if (skillUI == null && skillUI2 == null)
             CreateUI();
 
-        if (Input.GetKeyDown(Plugin.ToggleSkillUIKey.Value))
+        if (!InputGuard.IsTyping && Input.GetKeyDown(Plugin.ToggleSkillUIKey.Value))
             visible = !visible;
 
         if (!visible || Plugin.SelectedClass == PlayerClass.None)
