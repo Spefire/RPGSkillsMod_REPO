@@ -2,7 +2,7 @@ using HarmonyLib;
 using UnityEngine;
 
 [HarmonyPatch(typeof(RunManager), "Update")]
-internal static class SkillPatch
+internal static class SkillController
 {
     private static void Postfix()
     {
