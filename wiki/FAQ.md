@@ -30,6 +30,13 @@ skill usage.
 Yes, set `EnableMod` to `false` in the config file (see
 [Configuration](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/CHANGELOG.md)).
 
+### Where is my class saved?
+
+- **Host:** the class is stored per save file, next to the game's own save.
+- **Client:** the host's save is not yours, so your class is stored in a local
+  file on your machine (`rpgSkillsMod_class.es3` in the game's persistent data
+  folder) and is restored every time you launch the game.
+
 ### Is this mod multiplayer-safe?
 
 Yes, class selection is saved per save file and skills are designed to

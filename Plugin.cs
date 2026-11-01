@@ -21,12 +21,28 @@ public class Plugin : BaseUnityPlugin
 
     internal static ManualLogSource Log;
 
-    public static PlayerClass SelectedClass = PlayerClass.None;
+    private static PlayerClass selectedClass = PlayerClass.None;
+
+    public static PlayerClass SelectedClass
+    {
+        get { return selectedClass; }
+        set
+        {
+            if (selectedClass == value)
+                return;
+
+            selectedClass = value;
+            ClientClassStore.Save(value);
+        }
+    }
+
     public static bool DebugAllow = false;
 
     void Awake()
     {
         Log = Logger;
+
+        selectedClass = ClientClassStore.Load();
 
         EnableMod = Config.Bind(
             "General",

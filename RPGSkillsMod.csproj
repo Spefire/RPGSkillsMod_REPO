@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Saves\ClientClassStore.cs" />
     <Compile Include="Saves\SaveFileCreatePatch.cs" />
     <Compile Include="Saves\LoadGamePatch.cs" />
     <Compile Include="Saves\SaveGamePatch.cs" />
