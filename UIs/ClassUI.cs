@@ -32,7 +32,7 @@ internal static class ClassUI
         if (classUI == null)
             CreateUI();
 
-        bool isAdmin = (Plugin.DebugAllow || KonamiCheatRelay.FreeClassChangeUnlocked);
+        bool isAdmin = Plugin.DebugAllow;
 
         if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop() || (isAdmin && SemiFunc.RunIsLevel()))
         {

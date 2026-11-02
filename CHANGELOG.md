@@ -18,11 +18,14 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 * Bumped the version to 2.0.0 everywhere (plugin, package manifest, assembly and README badge).
 * The build no longer depends on a hard-coded relative path: the game folder can be set with the `GamePath` MSBuild property, the `REPO_PATH` environment variable or a git-ignored `RPGSkillsMod.local.props` file.
 
+### Removed
+
+* Removed the hidden Konami code easter egg introduced in 1.1.0.
+
 ### Fixed
 
 * Fixed *Berserk* and *Best Runner* sometimes staying active forever (and *Berserk*'s strength bonus being saved) when the level ended, the class was changed or the game was saved while they were running.
-* Fixed skill, class and UI hotkeys (and the Konami code) triggering while typing in the chat.
-* Fixed the Konami code RPC being accepted from a player other than the avatar's owner.
+* Fixed skill, class and UI hotkeys triggering while typing in the chat.
 * Fixed *Raise Dead* costing health when the host couldn't relay the revival.
 * Fixed a memory leak where the death positions kept for revivals were never released.
 
