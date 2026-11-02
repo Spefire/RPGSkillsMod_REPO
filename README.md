@@ -2,7 +2,7 @@
 
 Adds RPG classes to R.E.P.O., each with 2 unique active skills.
 
-![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
+![Status](https://img.shields.io/badge/Status-Testing-orange)
 ![Version](https://img.shields.io/badge/Version-2.0.0-blue)
 
 ## Features
@@ -14,7 +14,7 @@ Adds RPG classes to R.E.P.O., each with 2 unique active skills.
 
 ## Installation
 
-Install [BepInEx](https://thunderstore.io/c/repo/p/BepInEx/BepInExPack/), then **RPGSkillsMod** with your mod manager (or drop `RPGSkillsMod.dll` into `BepInEx/plugins`).
+Install **RPGSkillsMod** from [Thunderstore](https://thunderstore.io/c/repo/p/Spefire/RPGSkillsMod/) with your mod manager; BepInEx is installed automatically as a dependency.
 
 ## Classes & Skills
 
