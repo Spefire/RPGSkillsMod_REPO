@@ -6,7 +6,7 @@ set "EXITCODE=%ERRORLEVEL%"
 
 if not "%EXITCODE%"=="0" (
     echo.
-    echo Le packaging a echoue.
+    echo Packaging failed.
 )
 
 pause

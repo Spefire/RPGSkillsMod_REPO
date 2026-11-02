@@ -15,8 +15,8 @@ each skill's name, description, properties and remaining cooldown.
 
 Some skills require a condition to succeed (e.g. Reinforce requires you to
 be holding an item, Raise Dead requires being downed or holding a dead
-ally's severed head). Check the in-game chat/log for a message explaining
-why the skill failed.
+ally's severed head). Check the BepInEx console (or `BepInEx/LogOutput.log`)
+for a message explaining why the skill failed.
 
 ### The skill HUD is too big/intrusive, can I hide it?
 

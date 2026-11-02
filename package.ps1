@@ -11,7 +11,7 @@ $root = $PSScriptRoot
 $dll = Join-Path $root "bin\$Configuration\RPGSkillsMod.dll"
 
 if (-not (Test-Path $dll)) {
-    Write-Error "`"$dll`" introuvable. Compile le projet en configuration $Configuration avant de lancer ce script."
+    Write-Error "`"$dll`" not found. Build the project in the $Configuration configuration before running this script."
     exit 1
 }
 
@@ -44,7 +44,7 @@ try {
         $path = Join-Path $root $file
 
         if (-not (Test-Path $path)) {
-            Write-Warning "Fichier manquant, ignore : $file"
+            Write-Warning "Missing file, skipped: $file"
             continue
         }
 
@@ -58,4 +58,4 @@ finally {
     $zip.Dispose()
 }
 
-Write-Host "OK : $zipName cree avec succes." -ForegroundColor Green
+Write-Host "OK: $zipName created successfully." -ForegroundColor Green
