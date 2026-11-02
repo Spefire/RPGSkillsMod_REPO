@@ -11,7 +11,7 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 ### Added
 
 * Added a local save file for the class chosen as a client: joining a game no longer loses your class, since only the host's save used to store it.
-* Added a check that the host has the mod before sending it a skill request. Skills that need the host are now refused (without consuming their cooldown) with an explanatory message instead of failing silently.
+* Added a check that the host has the mod before sending it a skill request. Skills that need the host are now refused (without consuming their cooldown) and a warning is logged in the console instead of failing silently.
 
 ### Changed
 

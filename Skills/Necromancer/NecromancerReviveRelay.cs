@@ -16,15 +16,6 @@ internal class NecromancerReviveRelay : MonoBehaviour
             ReviveWithCorrectPosition(target, revivedByTruck);
     }
 
-    [PunRPC]
-    public void SetVisionFreezeRPC(float duration)
-    {
-        PlayerAvatar target = GetComponent<PlayerAvatar>();
-
-        if (target != null)
-            target.EnemyVisionFreezeTimerSet(duration);
-    }
-
     internal static void ReviveWithCorrectPosition(PlayerAvatar target, bool revivedByTruck)
     {
         if (LastDeathPosition.TryGetValue(target, out Vector3 deathPosition))

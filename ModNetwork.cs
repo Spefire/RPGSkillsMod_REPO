@@ -1,14 +1,10 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine;
 
 internal static class ModNetwork
 {
     private const string PlayerPropertyKey = "RPGSkillsMod";
-    private const float NotifyIntervalSeconds = 5f;
-
-    private static float lastNotifyTime = float.NegativeInfinity;
 
     public static void Announce()
     {
@@ -33,7 +29,7 @@ internal static class ModNetwork
         if (HasMod(PhotonNetwork.MasterClient))
             return true;
 
-        NotifyMissingMod("The host doesn't have RPGSkillsMod");
+        LogMissingMod("The host doesn't have RPGSkillsMod");
         return false;
     }
 
@@ -66,16 +62,8 @@ internal static class ModNetwork
         return sent;
     }
 
-    private static void NotifyMissingMod(string reason)
+    private static void LogMissingMod(string reason)
     {
         Plugin.Log.LogWarning($"{reason}: skill unavailable.");
-
-        if (Time.unscaledTime - lastNotifyTime < NotifyIntervalSeconds)
-            return;
-
-        lastNotifyTime = Time.unscaledTime;
-
-        if (ChatManager.instance != null)
-            ChatManager.instance.ForceSendMessage($"[RPGSkillsMod] {reason}, skill unavailable.");
     }
 }

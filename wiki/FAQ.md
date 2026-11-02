@@ -28,7 +28,7 @@ skill usage.
 ### Can I disable the mod without uninstalling it?
 
 Yes, set `EnableMod` to `false` in the config file (see
-[Configuration](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/CHANGELOG.md)).
+[Configuration](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/wiki/Configuration.md)).
 
 ### Where is my class saved?
 
@@ -41,8 +41,8 @@ Yes, set `EnableMod` to `false` in the config file (see
 
 Skills are designed to work in multiplayer sessions, but some of them rely on
 the host, so **the host must have the mod installed**. If the host doesn't, the
-affected skills are refused (without consuming their cooldown) and a message
-explains why.
+affected skills are refused (without consuming their cooldown) and a warning is
+logged in the BepInEx console.
 
 ### I found a bug, where do I report it?
 

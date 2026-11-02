@@ -14,7 +14,7 @@ readiness are shown on the in-level HUD.
 | [Scout](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/wiki/Scout.md) | Best Runner | Primary | Grants infinite stamina. | 60s | ✅ OK |
 | [Scout](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/wiki/Scout.md) | Treasure Sense | Secondary | Reveals valuable items around you. | 60s | ✅ OK |
 | [Druid](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/wiki/Druid.md) | Nature's Blessing | Primary | Heal nearby allies within a small radius. | 45s | ✅ OK |
-| [Druid](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/wiki/Druid.md) | Raise Dead | Secondary | Sacrifice your own health to revive yourself, or a fallen ally. | 120s | 🧪 Testing |
+| [Druid](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/wiki/Druid.md) | Raise Dead | Secondary | Sacrifice your own health to revive yourself, or a fallen ally. | 120s | ✅ OK |
 | [Mage](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/wiki/Mage.md) | Phantom | Primary | Become undetectable by enemies, floating like a ghost. | 60s | ✅ OK |
 | [Mage](https://github.com/Spefire/RPGSkillsMod_REPO/blob/master/wiki/Mage.md) | Reinforce | Secondary | Makes the item you're currently holding unbreakable. | 90s | ✅ OK |
 

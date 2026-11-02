@@ -94,6 +94,7 @@
     <Compile Include="Saves\LoadGamePatch.cs" />
     <Compile Include="Saves\SaveGamePatch.cs" />
     <Compile Include="Skills\Assassin\AssassinSkill.cs" />
+    <Compile Include="Skills\Assassin\AssassinVisionRelay.cs" />
     <Compile Include="Skills\Blacksmith\BlacksmithSkill.cs" />
     <Compile Include="Skills\Druid\DruidSkill.cs" />
     <Compile Include="Skills\Monk\MonkSkill.cs" />

@@ -37,6 +37,6 @@ internal class AssassinSkill : Skill
             return true;
         }
 
-        return ModNetwork.TryRpcToMaster(caster.photonView, nameof(NecromancerReviveRelay.SetVisionFreezeRPC), Duration);
+        return ModNetwork.TryRpcToMaster(caster.photonView, nameof(AssassinVisionRelay.SetVisionFreezeRPC), Duration);
     }
 }
