@@ -75,7 +75,7 @@ public class Plugin : BaseUnityPlugin
         SkillKey2 = Config.Bind(
             "Controls",
             "SkillKey2",
-            KeyCode.G,
+            KeyCode.R,
             "Key used to activate the secondary skill."
         );
 

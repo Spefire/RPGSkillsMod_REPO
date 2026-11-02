@@ -32,9 +32,12 @@ internal static class ClassUI
         if (classUI == null)
             CreateUI();
 
-        bool isAdmin = Plugin.DebugAllow;
+        bool canChangeClass =
+            SemiFunc.RunIsLobby() ||
+            SemiFunc.RunIsShop() ||
+            (Plugin.DebugAllow && SemiFunc.RunIsLevel());
 
-        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop() || (isAdmin && SemiFunc.RunIsLevel()))
+        if (canChangeClass)
         {
             if (!InputGuard.IsTyping && Input.GetKeyDown(Plugin.PreviousClassKey.Value))
             {
@@ -49,11 +52,13 @@ internal static class ClassUI
             }
         }
 
-        if (SemiFunc.RunIsLobby() || SemiFunc.RunIsShop() || isAdmin)
+        bool showHelp = Plugin.SelectedClass != PlayerClass.None;
+
+        if (canChangeClass)
         {
             classUI.SetActive(true);
-            helpIcon.gameObject.SetActive(true);
-            helpKey.gameObject.SetActive(true);
+            helpIcon.gameObject.SetActive(showHelp);
+            helpKey.gameObject.SetActive(showHelp);
             leftArrow.gameObject.SetActive(true);
             rightArrow.gameObject.SetActive(true);
             leftKey.gameObject.SetActive(true);
@@ -62,8 +67,8 @@ internal static class ClassUI
         else if (SemiFunc.RunIsLevel())
         {
             classUI.SetActive(true);
-            helpIcon.gameObject.SetActive(true);
-            helpKey.gameObject.SetActive(true);
+            helpIcon.gameObject.SetActive(showHelp);
+            helpKey.gameObject.SetActive(showHelp);
             leftArrow.gameObject.SetActive(false);
             rightArrow.gameObject.SetActive(false);
             leftKey.gameObject.SetActive(false);
@@ -98,7 +103,7 @@ internal static class ClassUI
         rect.sizeDelta = new Vector2(260, 30);
         rect.anchoredPosition = new Vector2(0, -62);
 
-        helpIcon = CreateText("HelpIcon", "◩", new Vector2(-120, -25), 24, Color.yellow);
+        helpIcon = CreateText("HelpIcon", "■", new Vector2(-120, -25), 24, Color.yellow);
         leftArrow = CreateText("LeftArrow", "◀", new Vector2(-90, -25), 24, Color.yellow);
         rightArrow = CreateText("RightArrow", "▶", new Vector2(-60, -25), 24, Color.yellow);
 
@@ -141,7 +146,9 @@ internal static class ClassUI
         if (classText == null)
             return;
 
-        classText.text = Plugin.SelectedClass.ToString();
+        classText.text = Plugin.SelectedClass == PlayerClass.None
+            ? "No class"
+            : Plugin.SelectedClass.ToString();
     }
 
     private static void PreviousClass()

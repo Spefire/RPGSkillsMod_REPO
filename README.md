@@ -2,14 +2,15 @@
 
 Adds RPG classes to R.E.P.O., each with 2 unique active skills.
 
-![Status](https://img.shields.io/badge/Status-Testing-orange)
+![Status (solo)](https://img.shields.io/badge/Status-OK-green)
+![Status (multi)](https://img.shields.io/badge/Status-Testing-orange)
 ![Version](https://img.shields.io/badge/Version-2.0.0-blue)
 
 ## Features
 
 - 5 classes, each with 2 active skills and an in-game cooldown HUD
 - Class selection in the shop and lobby, saved per save file
-- Configurable keybinds: `F` / `G` use the skills, `F6` / `F8` change class, `H` shows/hides the HUD (see the BepInEx config)
+- Configurable keybinds: `F` / `R` use the skills, `F6` / `F8` change class, `H` shows/hides the HUD (see the BepInEx config)
 - Multiplayer: skills with a world effect go through the host, so **the host must have the mod**
 
 ## Installation

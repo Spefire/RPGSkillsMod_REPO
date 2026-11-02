@@ -2,7 +2,7 @@
 
 Each class has **2 independent active skills**, each with its own cooldown.
 Use the **primary skill key** (default `F`) for the first skill and the
-**secondary skill key** (default `G`) for the second. Cooldowns and
+**secondary skill key** (default `R`) for the second. Cooldowns and
 readiness are shown on the in-level HUD.
 
 | Class | Skill | Slot | Effect | Cooldown | Status |

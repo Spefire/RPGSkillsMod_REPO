@@ -17,7 +17,7 @@ you launch the game with the mod installed.
 | `PreviousClassKey` | `F6` | Key used to select the previous class. |
 | `NextClassKey` | `F8` | Key used to select the next class. |
 | `SkillKey` | `F` | Key used to activate the primary skill. |
-| `SkillKey2` | `G` | Key used to activate the secondary skill. |
+| `SkillKey2` | `R` | Key used to activate the secondary skill. |
 | `ToggleSkillUIKey` | `H` | Key used to show or hide the skill UI. |
 
 Any of these can be changed to any `KeyCode` value by editing the config
