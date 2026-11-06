@@ -107,9 +107,9 @@ internal static class ClassUI
         leftArrow = CreateText("LeftArrow", "◀", new Vector2(-90, -25), 24, Color.yellow);
         rightArrow = CreateText("RightArrow", "▶", new Vector2(-60, -25), 24, Color.yellow);
 
-        helpKey = CreateText("HelpKey", Plugin.ToggleSkillUIKey.Value.ToString(), new Vector2(-120, -50), 18, Color.grey);
-        leftKey = CreateText("LeftKey", Plugin.PreviousClassKey.Value.ToString(), new Vector2(-90, -50), 18, Color.grey);
-        rightKey = CreateText("RightKey", Plugin.NextClassKey.Value.ToString(), new Vector2(-60, -50), 18, Color.grey);
+        helpKey = CreateText("HelpKey", Plugin.ToggleSkillUIKey.Value.ToString(), new Vector2(-120, -50), 16, Color.grey);
+        leftKey = CreateText("LeftKey", Plugin.PreviousClassKey.Value.ToString(), new Vector2(-90, -50), 16, Color.grey);
+        rightKey = CreateText("RightKey", Plugin.NextClassKey.Value.ToString(), new Vector2(-60, -50), 16, Color.grey);
 
         Refresh();
     }

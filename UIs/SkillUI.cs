@@ -103,11 +103,11 @@ internal static class SkillUI
         DestroyAllChildren(skillUI2);
 
         skillText = skillUI.GetComponent<TextMeshProUGUI>();
-        skillText.fontSize = 28;
+        skillText.fontSize = 22;
         skillText.color = Color.yellow;
 
         skillText2 = skillUI2.GetComponent<TextMeshProUGUI>();
-        skillText2.fontSize = 28;
+        skillText2.fontSize = 22;
         skillText2.color = Color.yellow;
 
         RectTransform rect = skillUI.GetComponent<RectTransform>();
@@ -121,20 +121,20 @@ internal static class SkillUI
         rect2.anchorMin = new Vector2(0, 0);
         rect2.anchorMax = new Vector2(0, 0);
         rect2.pivot = new Vector2(0, 0);
-        rect2.anchoredPosition = new Vector2(0, 20);
+        rect2.anchoredPosition = new Vector2(0, 30);
         rect2.sizeDelta = new Vector2(260, 160);
 
-        lobbyDescription = CreateText(skillUI.transform, "Description", "", new Vector2(0, -85), 18, Color.white);
-        lobbyProperties = CreateText(skillUI.transform, "Properties", "", new Vector2(0, -110), 12, Color.green);
+        lobbyDescription = CreateText(skillUI.transform, "Description", "", new Vector2(0, -85), 16, Color.white);
+        lobbyProperties = CreateText(skillUI.transform, "Properties", "", new Vector2(0, -110), 10, Color.green);
 
-        levelCooldown = CreateText(skillUI.transform, "Cooldown", "", new Vector2(0, -85), 18, Color.white);
-        levelKey = CreateText(skillUI.transform, "Key", Plugin.SkillKey.Value.ToString() + " to use", new Vector2(0, -105), 18, Color.grey);
+        levelCooldown = CreateText(skillUI.transform, "Cooldown", "", new Vector2(0, -85), 16, Color.white);
+        levelKey = CreateText(skillUI.transform, "Key", Plugin.SkillKey.Value.ToString() + " to use", new Vector2(0, -105), 16, Color.grey);
 
-        lobbyDescription2 = CreateText(skillUI2.transform, "Description", "", new Vector2(0, -85), 18, Color.white);
-        lobbyProperties2 = CreateText(skillUI2.transform, "Properties", "", new Vector2(0, -110), 12, Color.green);
+        lobbyDescription2 = CreateText(skillUI2.transform, "Description", "", new Vector2(0, -85), 16, Color.white);
+        lobbyProperties2 = CreateText(skillUI2.transform, "Properties", "", new Vector2(0, -110), 10, Color.green);
 
-        levelCooldown2 = CreateText(skillUI2.transform, "Cooldown", "", new Vector2(0, -85), 18, Color.white);
-        levelKey2 = CreateText(skillUI2.transform, "Key", Plugin.SkillKey2.Value.ToString() + " to use", new Vector2(0, -105), 18, Color.grey);
+        levelCooldown2 = CreateText(skillUI2.transform, "Cooldown", "", new Vector2(0, -85), 16, Color.white);
+        levelKey2 = CreateText(skillUI2.transform, "Key", Plugin.SkillKey2.Value.ToString() + " to use", new Vector2(0, -105), 16, Color.grey);
 
         RefreshLevel();
     }
