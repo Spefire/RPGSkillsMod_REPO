@@ -2,8 +2,7 @@
 
 Adds RPG classes to R.E.P.O., each with 2 unique active skills.
 
-![Status (solo)](https://img.shields.io/badge/Status-OK-green)
-![Status (multi)](https://img.shields.io/badge/Status-Testing-orange)
+![Status](https://img.shields.io/badge/Status-Testing-orange)
 ![Version](https://img.shields.io/badge/Version-2.0.1-blue)
 
 ## Features
