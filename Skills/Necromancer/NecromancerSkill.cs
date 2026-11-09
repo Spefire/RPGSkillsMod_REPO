@@ -4,13 +4,13 @@ using UnityEngine;
 
 internal class NecromancerSkill : Skill
 {
-    private const int HealthSacrifice = 25;
+    private readonly int HealthSacrifice = SkillConfig.Int("Necromancer", "HealthSacrifice", 25, 0, 1000, "Health sacrificed by the caster.");
 
     public NecromancerSkill()
     {
         Name = "Raise Dead";
         Description = "Sacrifice your own health to revive yourself, or a fallen ally.";
-        Cooldown = Plugin.DebugAllow ? 20f : 120f;
+        Cooldown = SkillConfig.Cooldown("Necromancer", 120f);
 
         Properties.Add($"Health sacrificed: {HealthSacrifice}");
     }

@@ -9,7 +9,7 @@ internal class BlacksmithSkill : Skill
     {
         Name = "Reinforce";
         Description = "Makes the item you're currently holding unbreakable.";
-        Cooldown = Plugin.DebugAllow ? 20f : 90f;
+        Cooldown = SkillConfig.Cooldown("Blacksmith", 90f);
     }
 
     public override bool Execute()

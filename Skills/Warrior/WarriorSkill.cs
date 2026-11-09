@@ -6,14 +6,14 @@ internal class WarriorSkill : Skill
     private float timer;
     private string grantedSteamId;
 
-    private const int StrengthLevels = 20;
-    private const float Duration = 15f;
+    private readonly int StrengthLevels = SkillConfig.Int("Warrior", "StrengthLevels", 20, 1, 100, "Grab and throw strength levels granted.");
+    private readonly float Duration = SkillConfig.Duration("Warrior", 15f);
 
     public WarriorSkill()
     {
         Name = "Berserk";
         Description = "Increases your strength.";
-        Cooldown = Plugin.DebugAllow ? 20f : 90f;
+        Cooldown = SkillConfig.Cooldown("Warrior", 90f);
         ActiveDuration = Duration;
 
         Properties.Add($"Strength levels: +{StrengthLevels}");

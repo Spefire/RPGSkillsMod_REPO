@@ -2,13 +2,13 @@ using UnityEngine;
 
 internal class TreasureHunterSkill : Skill
 {
-    private const float Radius = 15f;
+    private readonly float Radius = SkillConfig.Radius("TreasureHunter", 15f);
 
     public TreasureHunterSkill()
     {
         Name = "Treasure Sense";
         Description = "Reveals valuable items around you.";
-        Cooldown = Plugin.DebugAllow ? 20f : 60f;
+        Cooldown = SkillConfig.Cooldown("TreasureHunter", 60f);
 
         Properties.Add($"Radius: {Radius}m");
     }

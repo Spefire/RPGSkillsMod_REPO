@@ -3,8 +3,8 @@ using UnityEngine;
 
 internal class MonkSkill : Skill
 {
-    private const float Radius = 10f;
-    private const float StunDuration = 5f;
+    private readonly float Radius = SkillConfig.Radius("Monk", 10f);
+    private readonly float StunDuration = SkillConfig.Duration("Monk", 5f);
     private const float ExplosionForce = 35f;
     private const float UpwardsModifier = 5f;
 
@@ -12,7 +12,7 @@ internal class MonkSkill : Skill
     {
         Name = "Shockwave";
         Description = "Releases a powerful shockwave, stunning all nearby enemies.";
-        Cooldown = Plugin.DebugAllow ? 20f : 75f;
+        Cooldown = SkillConfig.Cooldown("Monk", 75f);
         ActiveDuration = StunDuration;
 
         Properties.Add($"Radius: {Radius}m");

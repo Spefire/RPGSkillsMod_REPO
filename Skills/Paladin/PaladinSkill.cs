@@ -3,14 +3,14 @@ using UnityEngine;
 
 internal class PaladinSkill : Skill
 {
-    private const float Radius = 15f;
-    private const float Duration = 10f;
+    private readonly float Radius = SkillConfig.Radius("Paladin", 15f);
+    private readonly float Duration = SkillConfig.Duration("Paladin", 10f);
 
     public PaladinSkill()
     {
         Name = "Divine Taunt";
         Description = "Grants invulnerability, but forces nearby enemies to focus you.";
-        Cooldown = Plugin.DebugAllow ? 20f : 60f;
+        Cooldown = SkillConfig.Cooldown("Paladin", 60f);
         ActiveDuration = Duration;
 
         Properties.Add($"Duration: {Duration}s");

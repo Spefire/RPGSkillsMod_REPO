@@ -4,14 +4,14 @@ using UnityEngine;
 
 internal class DruidSkill : Skill
 {
-    private const int Health = 50;
-    private const float Radius = 5f;
+    private readonly int Health = SkillConfig.Int("Druid", "Health", 50, 1, 1000, "Total health shared between healed players.");
+    private readonly float Radius = SkillConfig.Radius("Druid", 5f);
 
     public DruidSkill()
     {
         Name = "Nature's Blessing";
         Description = "Heal nearby allies within a small radius.";
-        Cooldown = Plugin.DebugAllow ? 20f : 45f;
+        Cooldown = SkillConfig.Cooldown("Druid", 45f);
 
         Properties.Add($"Radius: {Radius}m");
         Properties.Add($"Total health: {Health}");

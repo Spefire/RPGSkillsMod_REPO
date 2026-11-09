@@ -86,6 +86,8 @@ public class Plugin : BaseUnityPlugin
             "Key used to show or hide the skill UI."
         );
 
+        SkillConfig.Init(Config);
+
         Log.LogInfo($"{ModName} loaded...");
 
         var harmony = new Harmony(ModGUID);

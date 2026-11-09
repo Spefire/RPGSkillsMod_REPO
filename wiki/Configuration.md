@@ -23,3 +23,24 @@ you launch the game with the mod installed.
 Any of these can be changed to any `KeyCode` value by editing the config
 file, or through a config manager mod (e.g. BepInEx Configuration Manager)
 in-game.
+
+## Skills
+
+Each skill has its own section (named after the skill) in the config file.
+Changes require a game restart. In multiplayer, the values used are those of
+the player casting the skill.
+
+| Section | Settings (default) |
+|---|---|
+| `Paladin` | `Cooldown` (60), `Duration` (10), `Radius` (15) |
+| `Druid` | `Cooldown` (45), `Radius` (5), `Health` (50) |
+| `Scout` | `Cooldown` (60), `Duration` (15) |
+| `Monk` | `Cooldown` (75), `Radius` (10), `Duration` (5, stun) |
+| `Blacksmith` | `Cooldown` (90) |
+| `Assassin` | `Cooldown` (60), `Duration` (15) |
+| `Necromancer` | `Cooldown` (120), `HealthSacrifice` (25) |
+| `Ranger` | `Cooldown` (60), `Radius` (30), `Duration` (20) |
+| `Warrior` | `Cooldown` (90), `Duration` (15), `StrengthLevels` (20) |
+| `TreasureHunter` | `Cooldown` (60), `Radius` (15) |
+
+Cooldowns and durations are in seconds, radii in meters.

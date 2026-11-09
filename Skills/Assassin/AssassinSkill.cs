@@ -3,13 +3,13 @@ using UnityEngine;
 
 internal class AssassinSkill : Skill
 {
-    private const float Duration = 15f;
+    private readonly float Duration = SkillConfig.Duration("Assassin", 15f);
 
     public AssassinSkill()
     {
         Name = "Phantom";
         Description = "Become undetectable by enemies, floating like a ghost.";
-        Cooldown = Plugin.DebugAllow ? 20f : 60f;
+        Cooldown = SkillConfig.Cooldown("Assassin", 60f);
         ActiveDuration = Duration;
 
         Properties.Add($"Duration: {Duration}s");

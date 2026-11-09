@@ -5,13 +5,13 @@ internal class ScoutSkill : Skill
     private bool active;
     private float timer;
 
-    private const float Duration = 15f;
+    private readonly float Duration = SkillConfig.Duration("Scout", 15f);
 
     public ScoutSkill()
     {
         Name = "Best Runner";
         Description = "Grants infinite stamina.";
-        Cooldown = Plugin.DebugAllow ? 20f : 60f;
+        Cooldown = SkillConfig.Cooldown("Scout", 60f);
         ActiveDuration = Duration;
 
         Properties.Add($"Duration: {Duration}s");

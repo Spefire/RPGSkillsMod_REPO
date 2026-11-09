@@ -3,14 +3,14 @@ using UnityEngine;
 
 internal class RangerSkill : Skill
 {
-    private const float Radius = 30f;
-    private const float Duration = 20f;
+    private readonly float Radius = SkillConfig.Radius("Ranger", 30f);
+    private readonly float Duration = SkillConfig.Duration("Ranger", 20f);
 
     public RangerSkill()
     {
         Name = "Predator Sense";
         Description = "Marks nearby enemies on the map, revealing them to every player.";
-        Cooldown = Plugin.DebugAllow ? 20f : 60f;
+        Cooldown = SkillConfig.Cooldown("Ranger", 60f);
         ActiveDuration = Duration;
 
         Properties.Add($"Radius: {Radius}m");

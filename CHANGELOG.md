@@ -6,6 +6,14 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ---
 
+## [Unreleased]
+
+### Added
+
+* Cooldowns, durations, radii, and a few amounts (Druid heal, Necromancer sacrifice, Warrior strength levels) are now configurable per skill in the `.cfg` file. Defaults are unchanged. A game restart is required to apply changes.
+
+---
+
 ## [2.0.0] - Robustness pass
 
 ### Added
