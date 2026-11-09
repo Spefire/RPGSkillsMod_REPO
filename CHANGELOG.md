@@ -8,6 +8,10 @@ The format is based on **Keep a Changelog**, and this project follows **Semantic
 
 ## [Unreleased]
 
+### Fixed
+
+* The class and skill HUD now hides while the map is open, during the moon announcement, and whenever the game hides its own HUD, instead of overlapping with them.
+
 ### Added
 
 * Cooldowns, durations, radii, and a few amounts (Druid heal, Necromancer sacrifice, Warrior strength levels) are now configurable per skill in the `.cfg` file. Defaults are unchanged. A game restart is required to apply changes.

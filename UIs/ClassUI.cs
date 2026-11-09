@@ -32,6 +32,12 @@ internal static class ClassUI
         if (classUI == null)
             CreateUI();
 
+        if (HudGuard.IsGameOverlayActive)
+        {
+            classUI.SetActive(false);
+            return;
+        }
+
         bool canChangeClass =
             SemiFunc.RunIsLobby() ||
             SemiFunc.RunIsShop() ||

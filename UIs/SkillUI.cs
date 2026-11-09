@@ -40,7 +40,7 @@ internal static class SkillUI
         if (!InputGuard.IsTyping && Input.GetKeyDown(Plugin.ToggleSkillUIKey.Value))
             visible = !visible;
 
-        if (!visible || Plugin.SelectedClass == PlayerClass.None)
+        if (!visible || Plugin.SelectedClass == PlayerClass.None || HudGuard.IsGameOverlayActive)
         {
             skillUI.SetActive(false);
             skillUI2.SetActive(false);

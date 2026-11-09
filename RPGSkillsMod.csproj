@@ -115,6 +115,7 @@
     <Compile Include="Skills\SkillManager.cs" />
     <Compile Include="Skills\SkillVfx.cs" />
     <Compile Include="Skills\SkillVfxDeathPatch.cs" />
+    <Compile Include="UIs\HudGuard.cs" />
     <Compile Include="UIs\SkillUI.cs" />
     <Compile Include="InputGuard.cs" />
     <Compile Include="ModNetwork.cs" />
