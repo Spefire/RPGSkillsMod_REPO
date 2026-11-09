@@ -37,3 +37,9 @@ Full effect descriptions, cooldowns, radius and durations for every skill are on
 
 - Open an issue: [GitHub Issues](https://github.com/Spefire/RPGSkillsMod_REPO/issues)
 - Contact me directly via [Gmail](mailto:spefire@gmail.com) or [Ko-fi](https://ko-fi.com/spefire)
+
+## License
+
+This project is licensed under the MIT License.
+
+Original repository: [RPGSkillsMod](https://github.com/Spefire/RPGSkillsMod_REPO/)
